@@ -11,12 +11,14 @@ public class DataPass : MonoBehaviour
 {
     #region ####### DECLARATION
 
-    private readonly Data data = new Data();
     [HideInInspector]
     public static DataPass Instance;//Singleton....
 
     [Header("Saved Data")]
     public SavedData savedData = new SavedData();
+
+    [Header("DataPass info")]
+    public bool isReady = false;
 
     #endregion
     #region ###### EVENTS
@@ -32,13 +34,9 @@ public class DataPass : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void Start()
-    {
         DataInit();
     }
-
     #endregion
     #region ####### METHODS
 
@@ -47,83 +45,43 @@ public class DataPass : MonoBehaviour
     /// </summary>
     private void DataInit()
     {
-        string path = Application.persistentDataPath + data.savedPath;
+        isReady = false;
+        string path = Application.persistentDataPath + Data.data.savedPath;
         Debug.Log($"El archivo Existe?? {File.Exists(path)}, Ruta: {path}");
-        if (File.Exists(path))
+
+        SettingFile(!File.Exists(path));
+        isReady = true;
+    }
+
+    /// <summary>
+    /// Guardamos ó cargamos el archivo que poseeremos para contener los datos importantes
+    /// </summary>
+    /// <param name="wantSave"></param>
+    public void SettingFile(bool wantSave = false)
+    {
+        string _path = Application.persistentDataPath + Data.data.savedPath;
+        BinaryFormatter _formatter = new BinaryFormatter();
+        FileStream _stream = new FileStream(_path, wantSave ? FileMode.Create : FileMode.Open);
+        DataStorage _dataStorage;
+       
+        //Dependiendo de si va a cargar o guardar hará algo o no
+        if (wantSave)
         {
-            //lo carga
-            LoadData();
+            _dataStorage = new DataStorage(savedData);
+            _formatter.Serialize(_stream, _dataStorage);
+            _stream.Close();
         }
         else
         {
-            //lo crea
-            SaveData(this);
+            _dataStorage = _formatter.Deserialize(_stream) as DataStorage;
+            _stream.Close();
+            savedData = _dataStorage.savedData;
         }
     }
-
-    /// <summary>
-    /// Guardamos un archivo con los datos de dataPass
-    /// </summary>
-    /// <param name="dataPass"></param>
-    public void SaveData(DataPass dataPass)
-    {
-        string path = Application.persistentDataPath + data.savedPath;
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-
-        DataStorage dataS = new DataStorage(dataPass.savedData);
-        Debug.Log($"Veces que se ha Guardado el archivo '{data.savedPath}' : {dataS.savedData.debug_savedTimes}");
-        
-        formatter.Serialize(stream, dataS);
-        stream.Close();
-    }
-
-
-
-    /*
-    private string GetAppPath() => Application.persistentDataPath + data.savedPath;
-    */
-
-    public FileSettings SettingFile(DataPass _datapass = null)
-    {
-        bool wantSave = _datapass;
-
-        FileSettings fileSettings = new FileSettings();
-
-        fileSettings.path = Application.persistentDataPath + data.savedPath;
-        fileSettings.formatter = new BinaryFormatter();
-        fileSettings.mode = wantSave ? FileMode.Open : FileMode.Create;
-
-        return fileSettings;
-    }
-    /// <summary>
-    /// Aqui cargamos los archivos basado en el Data.savedPath
-    /// </summary>
-    public void LoadData()
-    {
-        //FileSettings f = new FileSettings();
-        //f = SettingFile();
-        string path = Application.persistentDataPath + data.savedPath;
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Open);
-
-        DataStorage savedDataStorage = formatter.Deserialize(stream) as DataStorage;
-        stream.Close();
-
-        savedData = savedDataStorage.savedData;
-        Debug.Log($"Veces que se ha Guardado el archivo '{data.savedPath}' : {savedData.debug_savedTimes}");
-    }
-
+   
     #endregion
 }
 #endregion
 #region ###########EXTRA
 
-public class FileSettings
-{
-    public string path ="";
-    public BinaryFormatter formatter;
-    public FileMode mode;
-}
 #endregion

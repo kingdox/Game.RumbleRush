@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &104220353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104220354}
+  - component: {fileID: 104220355}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104220354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104220353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.022616431, y: -1.0634812, z: -0.007088624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &104220355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104220353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e93a6a1f06e4aeb93d146dbf5dd71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_recordMeters: {fileID: 712656620}
+  text_recordKills: {fileID: 1429840186}
+  text_ActualMoney: {fileID: 1516288125}
 --- !u!1 &219057721
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2934426, g: 0.5283019, b: 0.26165894, a: 1}
+  m_Color: {r: 0.7211431, g: 1, b: 0.6839622, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -797,7 +843,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 644304197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 104220353}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &644304197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +906,7 @@ GameObject:
   - component: {fileID: 712656621}
   - component: {fileID: 712656620}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text Metters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1044,7 +1102,7 @@ GameObject:
   - component: {fileID: 1429840187}
   - component: {fileID: 1429840186}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text Kills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,7 +1181,7 @@ GameObject:
   - component: {fileID: 1516288126}
   - component: {fileID: 1516288125}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1241,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2934426, g: 0.5283019, b: 0.26165894, a: 1}
+  m_Color: {r: 0.7211431, g: 1, b: 0.6839622, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1295,7 +1353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a2c560259647b49b98d73e6f851c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: 0
   savedData:
     actualmoney: 0
     recordMetersReached: 0
@@ -1304,6 +1361,7 @@ MonoBehaviour:
     lastMetersReached: 0
     lastMonstersKilled: 0
     debug_savedTimes: 0
+  isReady: 0
 --- !u!4 &1875192909
 Transform:
   m_ObjectHideFlags: 0
@@ -1369,7 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2934426, g: 0.5283019, b: 0.26165894, a: 1}
+  m_Color: {r: 0.7211431, g: 1, b: 0.6839622, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1464,7 +1522,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play B
+  m_Text: Play Button
 --- !u!222 &1947678115
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 /// <summary>
 /// Representa los datos basicos del enviroment/app
 /// </summary>
 public class Data 
 {
-    public readonly string savedPath = "saved3.txt";
-    public readonly string version = "v0.0.1";
+    [HideInInspector]
+    public static Data data = new Data();
+    public readonly string savedPath = "saved7.txt";
+    public readonly string version = "v0.0.2";
 
+
+    
 }
 
 
@@ -64,4 +69,19 @@ public enum CharacterType
     Paladin,
     Hunter,
     Brutus
+}
+
+
+/// <summary>
+/// Aquí manejaremos con el index los cambios de la escena,
+/// sin tener que HARDCODEAR
+/// </summary>
+//[System.Serializable]
+//[SerializeField]
+public enum SceneIndex
+{
+    Menu = 0,
+    Instruction = 1,
+    Preparation = 2,
+    Game = 3,
 }
