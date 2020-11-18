@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 #endregion
 #region ####################### CLASS
@@ -19,9 +18,10 @@ public class MenuManager : MonoBehaviour
     #region ####################### EVENT
     private void Start()
     {
-        text_recordMeters.text = "Metros: " + DataPass.Instance.savedData.recordMetersReached.ToString() + "M";
-        text_recordKills.text = "Monstruos: " + DataPass.Instance.savedData.recordMonstersKilled.ToString();
-        text_ActualMoney.text = "Monedas: " + DataPass.Instance.savedData.actualmoney.ToString()+"$";
+        
+        text_recordMeters.text = ES.es.Trns(TKey.Metters) + DataPass.Instance.savedData.recordMetersReached.ToString() + ES.es.Trns(TKey.SIGN_Metters);
+        text_recordKills.text = ES.es.Trns(TKey.Monsters) + DataPass.Instance.savedData.recordMonstersKilled.ToString();
+        text_ActualMoney.text = ES.es.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString()+ ES.es.Trns(TKey.SIGN_Money);
 
     }
     private void Update()
@@ -31,16 +31,21 @@ public class MenuManager : MonoBehaviour
     #endregion
     #region ####################### METHOD
 
+
+
     /// <summary>
-    /// Basado en el tipo de escena te cambiará
+    /// Dependiendo del estado actual del sonido cambiará a sonar o no
     /// </summary>
-    public void ChangeSceneTo(SceneIndex sceneIndex)
+    public void OnOffMusic()
     {
-        Debug.Log($"Cargando Escena : {sceneIndex}");
-        SceneManager.LoadScene((int)sceneIndex);
+
     }
 
-
+    /// <summary>
+    ///  Cambiamos de escena
+    /// </summary>
+    /// <param name="i"></param>
+    public void ChangeSceneTo(int i) => Data.data.ChangeSceneTo(i);
     #endregion
 }
 #endregion

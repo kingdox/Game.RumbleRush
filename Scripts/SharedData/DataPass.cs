@@ -9,7 +9,7 @@ using UnityEngine.UI;
 #region ### CLASS
 public class DataPass : MonoBehaviour
 {
-    #region ####### DECLARATION
+    #region ####### VARIABLES
 
     [HideInInspector]
     public static DataPass Instance;//Singleton....
@@ -35,6 +35,9 @@ public class DataPass : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+    private void Start()
+    {
         DataInit();
     }
     #endregion
@@ -81,7 +84,4 @@ public class DataPass : MonoBehaviour
    
     #endregion
 }
-#endregion
-#region ###########EXTRA
-
 #endregion
