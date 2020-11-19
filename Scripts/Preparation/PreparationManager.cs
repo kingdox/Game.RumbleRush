@@ -81,6 +81,8 @@ public class PreparationManager : MonoBehaviour
 public struct PreparationVisual
 {
     public Image img_character;
+    public Text text_cost;
+
 
     public Text text_character;
     public Text text_energy;
@@ -92,6 +94,7 @@ public struct PreparationVisual
     public void SetText(Character _c)
     {
         //int i = (int)_c.type;
+        text_cost.text = _c.cost.ToString();
         text_character.text = ES.es.ClampKey(_c.keyName, CharacterData.cD.charKeys);  //ES.es.Trns(CharacterData.cD.charKeys[i]);
         text_energy.text = _c.energy.ToString();
         text_speed.text = _c.speed.ToString();
