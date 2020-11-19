@@ -22,28 +22,7 @@ public struct SavedData
     [Header("Debug Area")]
     public int debug_savedTimes;
 };
-public struct Character
-{
-    public CharacterType type;
 
-    public float speed;
-    public float energy;
-    public float jump;
-    public float cooldown;
-
-    /// <summary>
-    /// Establece el tipo que posee el personaje
-    /// basado en los tipos de personajes que hay
-    /// </summary>
-    public void SetType()
-    {
-        int i = (int)type;
-        speed = CharacterStats.characterStats.speed[i];
-        energy = CharacterStats.characterStats.energy[i];
-        jump = CharacterStats.characterStats.jump[i];
-        cooldown = CharacterStats.characterStats.cooldown[i];
-    }
-}
 public struct Buff
 {
     public BuffType type;
