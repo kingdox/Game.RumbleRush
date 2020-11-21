@@ -32,7 +32,12 @@ public class ES
         "Aumenta la velocida gradualmente.",
         "Reestablece la energía poco a poco.",
         "Permite dar saltos dobles.",
-        "Atrae más monstruos más de lo normal."
+        "Atrae más monstruos más de lo normal.",
+
+        // Buff ???
+       "Energía",
+       "Agilidad",
+       "Escudo"
     };
 
     /// <summary>
@@ -77,5 +82,10 @@ public enum TKey
     POW_Monk,
     POW_Paladin,
     POW_Hunter,
-    POW_Brutus
+    POW_Brutus,
+
+    // Buffs
+    BUFF_Energy,
+    BUFF_Speed,
+    BUFF_Shield
 }

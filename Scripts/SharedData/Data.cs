@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -23,6 +24,9 @@ public class Data
     /// </summary>
     /// <param name="index"></param>
     public void ChangeSceneTo(int index) => SceneManager.LoadScene(index);
+
+
+
     #endregion
 }
 
@@ -31,10 +35,20 @@ public class Data
 /// <summary>
 /// Aquí se poseerán las funcionalidades
 /// que pueden usarse en otros sitios
+/// los que puede que se usen mas de una vez
 /// </summary>
 public struct DataFunc
 {
     public static DataFunc _ = new DataFunc();
+
+
+
+    /// <summary>
+    /// Activa o desactiva el objeto basado en una condición recibida
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="condition"></param>
+    public void ObjOnOff(GameObject obj, bool condition) => obj.SetActive(condition);
 
     /// <summary>
     /// Te permite ir hacia adelante o hacia atrás en un arreglo sin salirte de los limites

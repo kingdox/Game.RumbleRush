@@ -22,9 +22,3 @@ public struct SavedData
     [Header("Debug Area")]
     public int debug_savedTimes;
 };
-
-public struct Buff
-{
-    public BuffType type;
-    public int count;
-}

@@ -5,14 +5,6 @@ using UnityEngine;
 
 
 
-public enum BuffType
-{
-    Speed,
-    Energy,
-    Shield
-}
-
-
 #region ##### MSG
 /*
     Aqui en este script se coloca todo lo que de momento no se ha encontrado
