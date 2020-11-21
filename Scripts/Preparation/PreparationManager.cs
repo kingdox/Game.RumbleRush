@@ -15,7 +15,7 @@ public class PreparationManager : MonoBehaviour
 
     [Header("Visual Settings")]
     public PreparationVisual preparationVisual = new PreparationVisual();
-
+    public Button btn_Buy;
 
     [Header("Preparation info")]
     public Character characterSelected;
@@ -88,6 +88,10 @@ public class PreparationManager : MonoBehaviour
 
         text_costMoney.text = budget.ToString() + TransData._.Trns(TKey.SIGN_Money);
         preparationVisual.SetText(characterSelected);
+
+
+        //Aqui si esto es mayor significa que pueda gastar el dinero
+        btn_Buy.enabled = budget >= 0;
     }
 
 
