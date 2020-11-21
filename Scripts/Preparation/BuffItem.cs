@@ -30,7 +30,8 @@ public class BuffItem : MonoBehaviour
     public GameObject info_count;
     public GameObject info_costTotal;
 
-
+    [Header("External")]
+    public bool HasChanged = false;
 
     #endregion
 
@@ -71,6 +72,7 @@ public class BuffItem : MonoBehaviour
             SetCountText();
         }
 
+        HasChanged = true;
     }
 
 
@@ -99,6 +101,6 @@ public class BuffItem : MonoBehaviour
     private void SetOnOff(GameObject obj, bool condition) => DataFunc._.ObjOnOff(obj, condition);
 
     /// <returns>El signo de la moneda</returns>
-    private string GetCurrency() => ES.es.Trns(TKey.SIGN_Money);
+    private string GetCurrency() => TransData._.Trns(TKey.SIGN_Money);
     #endregion
 }

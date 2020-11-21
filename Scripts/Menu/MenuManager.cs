@@ -19,9 +19,9 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         
-        text_recordMeters.text = ES.es.Trns(TKey.Metters) + DataPass.Instance.savedData.recordMetersReached.ToString() + ES.es.Trns(TKey.SIGN_Metters);
-        text_recordKills.text = ES.es.Trns(TKey.Monsters) + DataPass.Instance.savedData.recordMonstersKilled.ToString();
-        text_ActualMoney.text = ES.es.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString()+ ES.es.Trns(TKey.SIGN_Money);
+        text_recordMeters.text = TransData._.Trns(TKey.Metters) + DataPass.Instance.savedData.recordMetersReached.ToString() + TransData._.Trns(TKey.SIGN_Metters);
+        text_recordKills.text = TransData._.Trns(TKey.Monsters) + DataPass.Instance.savedData.recordMonstersKilled.ToString();
+        text_ActualMoney.text = TransData._.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString()+ TransData._.Trns(TKey.SIGN_Money);
 
     }
     private void Update()

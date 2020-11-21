@@ -19,21 +19,48 @@ public class PreparationManager : MonoBehaviour
 
     [Header("Preparation info")]
     public Character characterSelected;
-    //La cantidad de dinero que poseemos tras los gastos
+    public BuffItem[] buffItems = new BuffItem[3];
+
+    //La cantidad de dinero que poseemos tras los gastos, con ello podemos saber si tenemos o no sin afectar la data principal
     public int budget;
 
     #endregion
     #region ###### EVENT
     private void Start()
     {
-        text_actualMoney.text = ES.es.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString() + ES.es.Trns(TKey.SIGN_Money);
+        text_actualMoney.text = TransData._.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString() + TransData._.Trns(TKey.SIGN_Money);
         characterSelected.SetType();
-        //Poner los textos
         RefreshScene();
+    }
+
+    private void Update()
+    {
+        //TODO buscar luego una forma mejor que hacer una busqueda.....
+        CheckBuffItems(); 
     }
     #endregion
     #region ###### METHOD
 
+
+    /// <summary>
+    /// Revisamos si alguno de los buff ha cambiado para actualizar el precio
+    /// </summary>
+    private void CheckBuffItems()
+    {
+        bool needChanges = false;
+
+        //revisamo si alguno ha cambiado para actualizarlos
+        foreach (BuffItem bI in buffItems)
+        {
+            if (bI.HasChanged) {
+                needChanges = true;
+                bI.HasChanged = false;
+                // Debug.Log($"{ES.es.Trns(bI.buff.keyName)} | {bI.buff.keyName} ha cambiado => {bI.count}");
+            }
+        }
+        //si nesecita cambios entonces:
+        if (needChanges) RefreshScene();
+    }
 
     /// <summary>
     /// Se cambiará el personaje mostrado en pantalla
@@ -48,7 +75,6 @@ public class PreparationManager : MonoBehaviour
     }
 
 
-    // TODO falta completar
     /// <summary>
     /// Actualizamos Los datos de la escena basado en la nueva información
     /// </summary>
@@ -58,9 +84,9 @@ public class PreparationManager : MonoBehaviour
         budget = DataPass.Instance.savedData.actualmoney;
         budget -= characterSelected.cost;
 
+        foreach (BuffItem item in buffItems) budget -= item.totalCost;
 
-
-        text_costMoney.text = budget.ToString() + ES.es.Trns(TKey.SIGN_Money);
+        text_costMoney.text = budget.ToString() + TransData._.Trns(TKey.SIGN_Money);
         preparationVisual.SetText(characterSelected);
     }
 
@@ -95,10 +121,10 @@ public struct PreparationVisual
     {
         //int i = (int)_c.type;
         text_cost.text = _c.cost.ToString();
-        text_character.text = ES.es.ClampKey(_c.keyName, CharacterData.cD.charKeys);  //ES.es.Trns(CharacterData.cD.charKeys[i]);
+        text_character.text = TransData._.ClampKey(_c.keyName, CharacterData.cD.charKeys); 
         text_energy.text = _c.energy.ToString();
         text_speed.text = _c.speed.ToString();
         text_jump.text = _c.jump.ToString();
-        text_power.text = ES.es.ClampKey(_c.keyPower, CharacterData.cD.powKeys); 
+        text_power.text = TransData._.ClampKey(_c.keyPower, CharacterData.cD.powKeys); 
     }
 }

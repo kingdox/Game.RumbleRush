@@ -1104,6 +1104,10 @@ MonoBehaviour:
     jump: 0
     cooldown: 0
     cost: 0
+  buffItems:
+  - {fileID: 1864127505}
+  - {fileID: 795791038}
+  - {fileID: 1324368550}
   budget: 0
 --- !u!1 &690488038
 GameObject:
@@ -1409,6 +1413,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749351368}
   m_CullTransparentMesh: 0
+--- !u!114 &795791038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
+    type: 3}
+  m_PrefabInstance: {fileID: 1718153023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b9c34d177644a08bb85c2d0a256339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &849363363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,7 +1958,7 @@ PrefabInstance:
     - target: {fileID: 3967212347554228443, guid: 67a41d7a9f0ac4005810c02d000a4917,
         type: 3}
       propertyPath: m_Name
-      value: Buff
+      value: Buff 3
       objectReference: {fileID: 0}
     - target: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
         type: 3}
@@ -1995,6 +2011,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1324368550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136318831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b9c34d177644a08bb85c2d0a256339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1334161615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,7 +2921,12 @@ PrefabInstance:
     - target: {fileID: 3967212347554228443, guid: 67a41d7a9f0ac4005810c02d000a4917,
         type: 3}
       propertyPath: m_Name
-      value: Buff
+      value: Buff 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
+        type: 3}
+      propertyPath: buff.type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67a41d7a9f0ac4005810c02d000a4917, type: 3}
@@ -3322,6 +3355,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1864127505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
+    type: 3}
+  m_PrefabInstance: {fileID: 3967212347564322033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b9c34d177644a08bb85c2d0a256339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1887290627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,12 +3862,12 @@ PrefabInstance:
     - target: {fileID: 3967212347554228443, guid: 67a41d7a9f0ac4005810c02d000a4917,
         type: 3}
       propertyPath: m_Name
-      value: Buff
+      value: Buff 1
       objectReference: {fileID: 0}
     - target: {fileID: 4034433959684855504, guid: 67a41d7a9f0ac4005810c02d000a4917,
         type: 3}
       propertyPath: buff.type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67a41d7a9f0ac4005810c02d000a4917, type: 3}

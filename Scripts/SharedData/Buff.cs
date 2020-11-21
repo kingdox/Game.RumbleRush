@@ -15,8 +15,8 @@ public class BuffData
     // -> Los tipos de buff
     public readonly BuffType[] buffTypes =
     {
-        BuffType.Speed,
         BuffType.Energy,
+        BuffType.Speed,
         BuffType.Shield
     };
 
@@ -64,8 +64,8 @@ public struct Buff
 
 public enum BuffType
 {
-    Speed,
     Energy,
+    Speed,
     Shield
 }
 

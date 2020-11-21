@@ -4,13 +4,15 @@ using UnityEngine;
 
 
 /// <summary>
-/// Poseedor de las traducciones en español
-/// de ciertas palabras usadas recurrentemente
+/// Poseedor de las traducciones
+/// puede que para mas idiomas
 /// </summary>
-public class ES
+public class TransData
 {
     [HideInInspector]
-    public static ES es = new ES();
+    public static TransData _ = new TransData();
+    private enum Idioms { es, en}
+
     private readonly string[] value =
     {
         //General
