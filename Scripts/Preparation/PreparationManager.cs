@@ -12,10 +12,14 @@ public class PreparationManager : MonoBehaviour
     [Header("Preparation Settings")]
     public Text text_actualMoney;
     public Text text_costMoney;
+    [Space]
+    public Button btn_Buy;
+    public Image img_Buy;
+    public Text text_Buy;
 
     [Header("Visual Settings")]
     public PreparationVisual preparationVisual = new PreparationVisual();
-    public Button btn_Buy;
+   
 
     [Header("Preparation info")]
     public Character characterSelected;
@@ -28,7 +32,7 @@ public class PreparationManager : MonoBehaviour
     #region ###### EVENT
     private void Start()
     {
-        text_actualMoney.text = TransData._.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString() + TransData._.Trns(TKey.SIGN_Money);
+        text_actualMoney.text = Translator.Trns(TKey.Money) + DataPass.GetSavedData().actualmoney.ToString() + Translator.GetCurrency();
         characterSelected.SetType();
         RefreshScene();
     }
@@ -69,7 +73,7 @@ public class PreparationManager : MonoBehaviour
     /// <param name="_goforward"></param>
     public void ChangeCharacter(bool _goforward)
     {
-        int _newIndex = DataFunc._.TravelArr(_goforward, (CharacterData.cD.characters.Length - 1), (int)characterSelected.type);
+        int _newIndex = DataFunc.TravelArr(_goforward, (CharacterData.cD.characters.Length - 1), (int)characterSelected.type);
         characterSelected.SetType(_newIndex);
         RefreshScene();
     }
@@ -81,17 +85,53 @@ public class PreparationManager : MonoBehaviour
     private void RefreshScene()
     {
         //tenemos el dinero que posee el jugador y con esta la reduciremos para saber el resultado
-        budget = DataPass.Instance.savedData.actualmoney;
+        budget = DataPass.GetSavedData().actualmoney;
         budget -= characterSelected.cost;
 
         foreach (BuffItem item in buffItems) budget -= item.totalCost;
 
-        text_costMoney.text = budget.ToString() + TransData._.Trns(TKey.SIGN_Money);
+        text_costMoney.text = budget.ToString() + Translator.GetCurrency();
         preparationVisual.SetText(characterSelected);
 
-
         //Aqui si esto es mayor significa que pueda gastar el dinero
-        btn_Buy.enabled = budget >= 0;
+        bool canBuy = budget >= 0;
+        btn_Buy.enabled = canBuy;
+        img_Buy.color = canBuy
+            ? Color.green
+            : Color.green / 2;
+        text_Buy.color = canBuy
+            ? Color.gray
+            : Color.green / 2;
+    }
+
+
+
+
+    /// <summary>
+    /// Coloca la información en GameSetup
+    /// y actualiza DataPass para que posea los gastos nuevos.
+    /// </summary>
+    public void StartGame()
+    {
+        //Se maneja el setup de GameSetup y piran
+        //TODO
+
+        // -> Conservamos la info por que la vamos a alterar
+        SavedData _saved = DataPass.GetSavedData();
+
+        _saved.actualmoney = budget;
+        _saved.lastMoneySpent = DataPass.GetSavedData().actualmoney - budget;
+
+        DataPass.SetData(_saved);
+        DataPass.SaveLoadFile(true);
+
+
+        // -> se coloca los datos en gameSetup
+        GameSetup.character = characterSelected;
+        GameSetup.buffs = buffItems;
+        GameSetup.SetEasyMetters();
+
+        ChangeSceneTo((int)Data.Scenes.GameScene);
     }
 
 
@@ -99,11 +139,11 @@ public class PreparationManager : MonoBehaviour
     ///  Cambiamos a la escena indicada
     /// </summary>
     /// <param name="i"></param>
-    public void ChangeSceneTo(int _i) => Data.data.ChangeSceneTo(_i);
+    public void ChangeSceneTo(int _i) => DataFunc.ChangeSceneTo(_i);
     #endregion
 }
 
-
+#region PreparationVisual
 /// <summary>
 /// Se contendrá las referencias de textos para mostrar
 /// </summary>
@@ -124,11 +164,12 @@ public struct PreparationVisual
     public void SetText(Character _c)
     {
         //int i = (int)_c.type;
-        text_cost.text = _c.cost.ToString();
-        text_character.text = TransData._.ClampKey(_c.keyName, CharacterData.cD.charKeys); 
+        text_cost.text = _c.cost.ToString() + Translator.GetCurrency();
+        text_character.text = Translator.ClampKey(_c.keyName, CharacterData.cD.charKeys); 
         text_energy.text = _c.energy.ToString();
         text_speed.text = _c.speed.ToString();
         text_jump.text = _c.jump.ToString();
-        text_power.text = TransData._.ClampKey(_c.keyPower, CharacterData.cD.powKeys); 
+        text_power.text = Translator.ClampKey(_c.keyPower, CharacterData.cD.powKeys); 
     }
 }
+#endregion

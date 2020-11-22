@@ -7,12 +7,17 @@ using UnityEngine;
 /// Poseedor de las traducciones
 /// puede que para mas idiomas
 /// </summary>
-public class TransData
+public class Translator
 {
     [HideInInspector]
-    public static TransData _ = new TransData();
+    public static Translator _ = new Translator();
     private enum Idioms { es, en}
 
+
+    /// <summary>
+    /// Valores en español con los textos
+    /// No usar directamente.
+    /// </summary>
     private readonly string[] value =
     {
         //General
@@ -49,7 +54,7 @@ public class TransData
     /// <param name="valueKey"></param>
     /// <param name="segmenKey"></param>
     /// <returns>La traducción de un valor del segmento establecido</returns>
-    public string ClampKey(TKey valueKey, TKey[] segmenKey) =>value[ Mathf.Clamp((int)valueKey,(int)segmenKey[0],(int)segmenKey[segmenKey.Length - 1])];
+    public static string ClampKey(TKey valueKey, TKey[] segmenKey) => _.value[ Mathf.Clamp((int)valueKey,(int)segmenKey[0],(int)segmenKey[segmenKey.Length - 1])];
 
     /// <summary>
     /// Te devuelve el resultado de los datos para
@@ -57,7 +62,11 @@ public class TransData
     /// </summary>
     /// <param name="enumKey"></param>
     /// <returns>La traducción de un valor</returns>
-    public string Trns(TKey enumKey) => value[(int)enumKey];
+    public static string Trns(TKey enumKey) => _.value[(int)enumKey];
+
+    /// <returns>Devuelve la moneda</returns>
+    public static string GetCurrency() => Trns(TKey.SIGN_Money);
+
 }
 
 /// <summary>

@@ -12,10 +12,11 @@ public class DataPass : MonoBehaviour
     #region ####### VARIABLES
 
     [HideInInspector]
-    public static DataPass Instance;//Singleton....
+    public static DataPass _;//Singleton....
 
     [Header("Saved Data")]
-    public SavedData savedData = new SavedData();
+    [SerializeField]
+    private SavedData savedData = new SavedData();
 
     [Header("DataPass info")]
     public bool isReady = false;
@@ -25,21 +26,18 @@ public class DataPass : MonoBehaviour
     private void Awake()
     {
         //Singleton corroboration
-        if (Instance == null)
+        if (_ == null)
         {
             DontDestroyOnLoad(gameObject);
-            Instance = this;
+            _ = this;
         }
-        else if (Instance != this)
+        else if (_ != this)
         {
             Destroy(gameObject);
         }
 
     }
-    private void Start()
-    {
-        DataInit();
-    }
+    private void Start() => DataInit();
     #endregion
     #region ####### METHODS
 
@@ -52,15 +50,16 @@ public class DataPass : MonoBehaviour
         string path = Application.persistentDataPath + Data.data.savedPath;
         Debug.Log($"El archivo Existe?? {File.Exists(path)}, Ruta: {path}");
 
-        SettingFile(!File.Exists(path));
+        SaveLoadFile(!File.Exists(path));
         isReady = true;
     }
 
     /// <summary>
-    /// Guardamos ó cargamos el archivo que poseeremos para contener los datos importantes
+    /// Guardamos ó cargamos el archivo que poseeremos para contener los datos
+    /// que se guardan en un archivo
     /// </summary>
     /// <param name="wantSave"></param>
-    public void SettingFile(bool wantSave = false)
+    public static void  SaveLoadFile(bool wantSave = false)
     {
         string _path = Application.persistentDataPath + Data.data.savedPath;
         BinaryFormatter _formatter = new BinaryFormatter();
@@ -70,18 +69,31 @@ public class DataPass : MonoBehaviour
         //Dependiendo de si va a cargar o guardar hará algo o no
         if (wantSave)
         {
-            _dataStorage = new DataStorage(savedData);
+            _.savedData.debug_savedTimes++;
+            _dataStorage = new DataStorage(GetSavedData());
             _formatter.Serialize(_stream, _dataStorage);
             _stream.Close();
+
+            Debug.Log($"Archivo {Data.data.savedPath} Guardado {GetSavedData().debug_savedTimes} veces !");
         }
         else
         {
             _dataStorage = _formatter.Deserialize(_stream) as DataStorage;
             _stream.Close();
-            savedData = _dataStorage.savedData;
+            SetData(_dataStorage.savedData);
+            //_.savedData = _dataStorage.savedData;
         }
     }
-   
+
+    /// <returns>Los datos guardados</returns>
+    public static SavedData GetSavedData() => _.savedData;
+
+    /// <summary>
+    ///  Inserta los nuevos datos que poseerá dataPass en su "SavedData"
+    /// </summary>
+    /// <param name="newSavedData"></param>
+    public static void SetData(SavedData newSavedData) => _.savedData = newSavedData;
+
     #endregion
 }
 #endregion

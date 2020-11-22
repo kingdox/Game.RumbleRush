@@ -86,7 +86,7 @@ public class BuffItem : MonoBehaviour
     /// <summary>
     /// Actualiza un texto de tipo monetario
     /// </summary>
-    private void SetCostText(Text txt , int val) => txt.text = val.ToString() + GetCurrency();
+    private void SetCostText(Text txt , int val) => txt.text = val.ToString() + Translator.GetCurrency();
 
     /// <summary>
     /// Establecemos el buff con sus valores
@@ -98,9 +98,8 @@ public class BuffItem : MonoBehaviour
     /// </summary>
     /// <param name="obj"></param>
     /// <param name="condition"></param>
-    private void SetOnOff(GameObject obj, bool condition) => DataFunc._.ObjOnOff(obj, condition);
+    private void SetOnOff(GameObject obj, bool condition) => DataFunc.ObjOnOff(obj, condition);
 
-    /// <returns>El signo de la moneda</returns>
-    private string GetCurrency() => TransData._.Trns(TKey.SIGN_Money);
+    
     #endregion
 }

@@ -19,14 +19,10 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         
-        text_recordMeters.text = TransData._.Trns(TKey.Metters) + DataPass.Instance.savedData.recordMetersReached.ToString() + TransData._.Trns(TKey.SIGN_Metters);
-        text_recordKills.text = TransData._.Trns(TKey.Monsters) + DataPass.Instance.savedData.recordMonstersKilled.ToString();
-        text_ActualMoney.text = TransData._.Trns(TKey.Money) + DataPass.Instance.savedData.actualmoney.ToString()+ TransData._.Trns(TKey.SIGN_Money);
+        text_recordMeters.text = Translator.Trns(TKey.Metters) + DataPass.GetSavedData().recordMetersReached.ToString() + Translator.Trns(TKey.SIGN_Metters);
+        text_recordKills.text = Translator.Trns(TKey.Monsters) + DataPass.GetSavedData().recordMonstersKilled.ToString();
+        text_ActualMoney.text = Translator.Trns(TKey.Money) + DataPass.GetSavedData().actualmoney.ToString()+ Translator.Trns(TKey.SIGN_Money);
 
-    }
-    private void Update()
-    {
-        
     }
     #endregion
     #region ####################### METHOD
@@ -45,7 +41,7 @@ public class MenuManager : MonoBehaviour
     ///  Cambiamos de escena
     /// </summary>
     /// <param name="i"></param>
-    public void ChangeSceneTo(int i) => Data.data.ChangeSceneTo(i);
+    public void ChangeSceneTo(int i) => DataFunc.ChangeSceneTo(i);
     #endregion
 }
 #endregion

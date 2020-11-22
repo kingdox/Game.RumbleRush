@@ -7,27 +7,26 @@ using UnityEngine.SceneManagement;
 
 
 /// <summary>
-/// Representa los datos basicos del enviroment/app
+/// Representa los datos basicos del enviroment/app/exe
 /// </summary>
 public class Data 
 {
     [HideInInspector]
     public static Data data = new Data();
 
-    public readonly string savedPath = "saved7.txt";
-    public readonly string version = "v0.0.4";
+    public readonly string savedPath = "saved8.txt";
+    public readonly string version = "v0.1.0";
 
+    //Provisional
+    public readonly int monsterValue = 5;
 
-    #region ### METHOD
-    /// <summary>
-    /// Cambiamos a la escena indicada
-    /// </summary>
-    /// <param name="index"></param>
-    public void ChangeSceneTo(int index) => SceneManager.LoadScene(index);
-
-
-
-    #endregion
+    public enum Scenes
+    {
+        MenuScene,
+        InstructionScene,
+        PreparationScene,
+        GameScene
+    }
 }
 
 
@@ -39,16 +38,13 @@ public class Data
 /// </summary>
 public struct DataFunc
 {
-    public static DataFunc _ = new DataFunc();
-
-
 
     /// <summary>
     /// Activa o desactiva el objeto basado en una condición recibida
     /// </summary>
     /// <param name="obj"></param>
     /// <param name="condition"></param>
-    public void ObjOnOff(GameObject obj, bool condition) => obj.SetActive(condition);
+    public static void ObjOnOff(GameObject obj, bool condition) => obj.SetActive(condition);
 
     /// <summary>
     /// Te permite ir hacia adelante o hacia atrás en un arreglo sin salirte de los limites
@@ -56,7 +52,7 @@ public struct DataFunc
     /// _index es la pos actual en el arreglo, en caso de no haber es 0
     /// </summary>
     /// <returns>la nueva posición en el arreglo</returns>
-    public int TravelArr(bool goNext, int indexLength, int _index = 0 )
+    public static int TravelArr(bool goNext, int indexLength, int _index = 0 )
     {
         int i = goNext
             ? (_index == indexLength ? 0 : _index + 1)
@@ -64,4 +60,11 @@ public struct DataFunc
         ;
         return i;
     }
+
+    /// <summary>
+    /// Cambiamos a la escena indicada
+    /// </summary>
+    /// <param name="index"></param>
+    public static void ChangeSceneTo(int index) => SceneManager.LoadScene(index);
+
 }

@@ -12,5 +12,5 @@ public class InstructionManager : MonoBehaviour
     ///  Cambiamos de escena
     /// </summary>
     /// <param name="i"></param>
-    public void ChangeSceneTo(int i) => Data.data.ChangeSceneTo(i);
+    public void ChangeSceneTo(int i) => DataFunc.ChangeSceneTo(i);
 }
