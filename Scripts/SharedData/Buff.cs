@@ -37,6 +37,8 @@ public class BuffData
 /// <summary>
 /// Modelo del buff con el tipo, nombre y su coste
 /// Basado en el tipo este se puede rellenar
+///
+/// Añade tambien la cantidad que se tiene de esta
 /// </summary>
 [System.Serializable]
 public struct Buff
@@ -44,7 +46,8 @@ public struct Buff
     public BuffType type;
     public TKey keyName;
 
-
+    //- Aqui sabemos cuantos posee el buff
+    public int counts;
     public int cost;
 
     /// <summary>
@@ -58,8 +61,13 @@ public struct Buff
         type = BuffData._.buffTypes[i];
         cost = BuffData._.cost[i];
         keyName = BuffData._.nameKeys[i];
-
     }
+
+    /// <summary>
+    /// Añades o quitas en el contador la cantidad que quieras
+    /// limitado entre el 0 y el limite de buffs
+    /// </summary>
+    public void ModifyCount(int c) => counts = Mathf.Clamp(counts + c, 0, Data.data.maxBuffCount);
 }
 
 public enum BuffType

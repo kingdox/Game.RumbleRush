@@ -16,9 +16,13 @@ public class Data
 
     public readonly string savedPath = "saved8.txt";
     public readonly string version = "v0.1.0";
+    
+    //Datos especificos
 
-    //Provisional
+    // -> Valor de cada monstruo eliminado
     public readonly int monsterValue = 5;
+    // -> Cantidad maxima de un tipod e buff
+    public readonly int maxBuffCount = 99;
 
     public enum Scenes
     {

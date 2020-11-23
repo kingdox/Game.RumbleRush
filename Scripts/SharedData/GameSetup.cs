@@ -4,17 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 #endregion
 
-public static class GameSetup
+
+public class GameSetup: MonoBehaviour
 {
     #region Variables
 
-    [Header("Player info")]
+    #region VISUAL-Variables que es DEBUG
+    //_Este apartado es visual, solo visual...
+    [Header("Buff")]
+    [SerializeField]
+    private Character visual_character;
+    [Header("Buff")]
+    [SerializeField]
+    private Buff[] visual_buffs;
+    public float visual_easyMetters;
+    [Space]
+    [Header("DEBUGGGG")]
+    public bool debug_mode = false;
+    #endregion
+
+
+
     // -> Personaje escogido
     public static Character character;
     // -> Los Buff con la cantidad comprada
-    public static BuffItem[] buffs;
-
-    [Header("Setup")]
+    public static Buff[] buffs;
     public static float easyMetters;
 
     #endregion
@@ -22,6 +36,26 @@ public static class GameSetup
 
     #region Methods
 
+    /// <summary>
+    /// Esto permite actualizar los datos reales que
+    /// tenemos para verlos con el objeto asignado en el inspector
+    /// </summary>
+    public void UpdateVisuals()
+    {
+        if (debug_mode)
+        {
+            character = visual_character;
+            buffs = visual_buffs;
+            easyMetters = visual_easyMetters;
+        }
+        else
+        {
+            visual_character = character;
+            visual_buffs = buffs;
+            visual_easyMetters = easyMetters;
+        }
+        Debug.Log($"GameSetup Updated, Debug? {debug_mode}");
+    }
 
 
     /// <summary>
@@ -41,12 +75,4 @@ public static class GameSetup
     }
     #endregion
 
-    }
-
-/*
-
-    GameSetup guarda los datos de la ultima partida, esta info estará presente
-
- 
- 
- */
+}

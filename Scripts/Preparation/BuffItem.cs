@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// Donde poseemos el buff y la cantidad escogidas, actualiza internamente sus cosas
 /// 
 /// </summary>
+[System.Serializable]
 public class BuffItem : MonoBehaviour
 {
     #region ###### VARIABLES
@@ -15,9 +16,6 @@ public class BuffItem : MonoBehaviour
     public Buff buff;
 
     [Header("BuffItem info")]
-    [Range(0, 99)]
-    private readonly int maxCount = 99;
-    public int count = 0;
     public int totalCost = 0;
     [Space]
     public Text text_count;
@@ -38,7 +36,7 @@ public class BuffItem : MonoBehaviour
     #region ###### EVENTS
     void Start()
     {
-        count = 0;
+        buff.counts = 0;
         SetBuff();
         SetCostText(text_cost, buff.cost);
 
@@ -57,14 +55,16 @@ public class BuffItem : MonoBehaviour
     /// <param name="_c"></param>
     public void UpdateCount(int _c = 0) {
 
-        count = Mathf.Clamp(count + _c, 0, maxCount);
-        totalCost = buff.cost * count;
+        buff.ModifyCount(_c);
 
-        bool haveCount = count != 0;
+        //count = Mathf.Clamp(count + _c, 0, Data.data.maxBuffCount);
+        totalCost = buff.cost * buff.counts;
+
+        bool haveCount = buff.counts != 0;
         SetOnOff(info_count, haveCount);
         SetOnOff(info_costTotal, haveCount);
-        SetOnOff(btn_minus, count > 0);
-        SetOnOff(btn_plus, count < maxCount);
+        SetOnOff(btn_minus, buff.counts > 0);
+        SetOnOff(btn_plus, buff.counts < Data.data.maxBuffCount);
 
         if (haveCount)
         {
@@ -81,7 +81,7 @@ public class BuffItem : MonoBehaviour
     /// <summary>
     /// Actualiza la cantidad de buff escogidas
     /// </summary>
-    private void SetCountText() =>  text_count.text = "x"+count.ToString();
+    private void SetCountText() =>  text_count.text = "x"+ buff.counts.ToString();
 
     /// <summary>
     /// Actualiza un texto de tipo monetario

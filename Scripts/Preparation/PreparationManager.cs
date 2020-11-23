@@ -24,7 +24,6 @@ public class PreparationManager : MonoBehaviour
     [Header("Preparation info")]
     public Character characterSelected;
     public BuffItem[] buffItems = new BuffItem[3];
-
     //La cantidad de dinero que poseemos tras los gastos, con ello podemos saber si tenemos o no sin afectar la data principal
     public int budget;
 
@@ -113,9 +112,6 @@ public class PreparationManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        //Se maneja el setup de GameSetup y piran
-        //TODO
-
         // -> Conservamos la info por que la vamos a alterar
         SavedData _saved = DataPass.GetSavedData();
 
@@ -128,12 +124,36 @@ public class PreparationManager : MonoBehaviour
 
         // -> se coloca los datos en gameSetup
         GameSetup.character = characterSelected;
-        GameSetup.buffs = buffItems;
+
+        Buff[] _buffs = GetBuffs(); //new Buff[buffItems.Length];
+
+        GameSetup.buffs = _buffs;
         GameSetup.SetEasyMetters();
 
         ChangeSceneTo((int)Data.Scenes.GameScene);
     }
 
+
+    /// <summary>
+    /// Revisamos del arreglo items de buff si se ha añadido alguno, de ser así
+    /// se agregan al Buff
+    /// </summary>
+    /// <returns>Retorna los buff comprados</returns>
+    private Buff[] GetBuffs()
+    {
+        int count = 0;
+        int[] indexBuff = new int[buffItems.Length];
+
+        for (int x = 0; x < buffItems.Length ; x++) if (buffItems[x].buff.counts > 0) indexBuff[count++] = x;
+
+       
+        Buff[] _buffs = new Buff[count];
+        for (int j = 0; j < count; j++) _buffs[j] = buffItems[indexBuff[j]].buff;
+
+        // Losiento profe le fallé :( no se me ocurrió
+        // algo mejor que hacer que hay prisas tic toc tic toc
+        return _buffs;
+    }
 
     /// <summary>
     ///  Cambiamos a la escena indicada
