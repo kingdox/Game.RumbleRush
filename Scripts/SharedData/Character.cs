@@ -39,7 +39,7 @@ public class CharacterData
     //-> vida del personaje
     public readonly float[] energy = { 1, 11, 1, 1 };
     //-> fuerza del salto
-    public readonly float[] jump = { 1, 1, 11, 1 };
+    public readonly float[] jump = { 8, 1, 11, 1 };
     //-> Cooldown de la habilidad
     public readonly float[] cooldown = { 1, 1, 11, 1 };
     //-> Costo para usarlo

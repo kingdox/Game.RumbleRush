@@ -32,8 +32,12 @@ public class GameSetup: MonoBehaviour
     public static float easyMetters;
 
     #endregion
-
-
+    #region EVENT
+    private void Awake()
+    {
+        if (debug_mode) Debug.LogError("WARN ! --> DEBUG_MODE ON");
+    }
+    #endregion
     #region Methods
 
     /// <summary>
