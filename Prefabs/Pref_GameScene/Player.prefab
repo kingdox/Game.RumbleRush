@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 7
-  canJumpAgain: 0
+  canJump: 0
+  falling: 0
   transform_ground: {fileID: 761923047082075641}
 --- !u!1 &6854638034738725334
 GameObject:

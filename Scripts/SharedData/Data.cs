@@ -15,7 +15,7 @@ public class Data
     public static Data data = new Data();
 
     public readonly string savedPath = "saved8.txt";
-    public readonly string version = "v0.1.0";
+    public readonly string version = "v0.1.1";
     
     //Datos especificos
 

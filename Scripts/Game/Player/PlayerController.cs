@@ -14,27 +14,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Settings")]
     public float jumpForce = 7.0f;
-    public bool canJumpAgain = false;
+    public bool canJump = false;
+    public bool falling = false;
 
     [Header("Ground Settings")]
 
     //referecia al transform de groundCheck
     public Transform transform_ground;
-
-    //layers en los que considerará estar grounded
-    //public LayerMask ground_Layer;
-
-    //public Vector2 ground_SizeGroundCheck = new Vector2(0.64f, 0.9f);
-
-    //indica si estamos tocando el suelo...
-    //public bool ground_grounded = false;
-
-    /*
-    [Header("Front Check")]
-    public Transform front_Check; //referecia al transform de frontCheck
-    public Vector2 front_SizeFrontCheck = new Vector2(0.64f, 0.9f);
-    public bool front_isContact = false; //indica si estamos tocando el muro de en frente
-    */
 
     //[Header("Movement Settings")]
     //public bool autoMove = true;
@@ -49,13 +35,12 @@ public class PlayerController : MonoBehaviour
     {
 
         rigidBody = GetComponent<Rigidbody2D>();
-        //BoxCollider2D o = GetComponent<BoxCollider2D>();
-        //o.isTrigger
     }
 
     private void Update()
     {
-        //EvaluePhysics();
+        CheckPlayer();
+
         Controls();
         //DeadZoneCheck();
     }
@@ -63,12 +48,14 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         //Movement();
+       
     }
 
     private void OnDrawGizmos()
     {
-        // Gizmos.color = Color.red;
-       // Gizmos.DrawWireCube(ground_Check.position, ground_SizeGroundCheck);
+        Gizmos.color = Color.red;
+
+       Gizmos.DrawWireCube(transform.position, transform.localScale);
         /*  Gizmos.color = Color.blue;
           Gizmos.DrawWireCube(front_Check.position, front_SizeFrontCheck);
           */
@@ -78,22 +65,18 @@ public class PlayerController : MonoBehaviour
 
     #region ################################### Methods
 
-    /// <summary>
-    /// Evaluamos si está tocando o no el suelo
-    /// </summary>
-    private void EvaluePhysics()
-    {
-        /*
 
-        ground_grounded = Physics2D.OverlapBox(ground_Check.position, ground_SizeGroundCheck, 0f, ground_Layer);
-        if (ground_grounded)
-        {
-            jumpsInAirCurrent = 0;
-            //canJumpAgain = true;
-        }
-        //  front_isContact = Physics2D.OverlapBox(front_Check.position, front_SizeFrontCheck, 0f, ground_Layer);
-        */
+    /// <summary>
+    /// Se revisa el estado del player
+    /// así se sabrá si puede saltar o no.
+    /// </summary>
+    private void CheckPlayer()
+    {
+        if (rigidBody.velocity.y == 0 && falling) canJump = true;
+        falling = rigidBody.velocity.y < 0;
     }
+
+
 
     /// <summary>
     /// vemos los controles que presiona
@@ -115,24 +98,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Jump()
     {
+        if (!canJump) return;   
+
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
         rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        /*
-            //en caso de poder saltar de nuevo
-            if (ground_grounded || jumpsInAirCurrent < jumpsIntAllowed)
-            {
-                // limpiamos el impulso de caída
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
-                rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                //canJumpAgain = false;
-            }
-
-            if (!ground_grounded)
-            {
-                jumpsInAirCurrent++;
-            }
-        */
+        canJump = false;
     }
     /*
     public void Movement()
