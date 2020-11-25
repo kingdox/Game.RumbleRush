@@ -18,13 +18,7 @@ public class GameSetup: MonoBehaviour
     [SerializeField]
     private Buff[] visual_buffs;
     public float visual_easyMetters;
-    [Space]
-    [Header("DEBUGGGG")]
-    public bool debug_mode = false;
     #endregion
-
-
-
     // -> Personaje escogido
     public static Character character;
     // -> Los Buff con la cantidad comprada
@@ -33,20 +27,16 @@ public class GameSetup: MonoBehaviour
 
     #endregion
     #region EVENT
-    private void Awake()
-    {
-        if (debug_mode) Debug.LogError("WARN ! --> DEBUG_MODE ON");
-    }
+    
     #endregion
     #region Methods
-
     /// <summary>
     /// Esto permite actualizar los datos reales que
     /// tenemos para verlos con el objeto asignado en el inspector
     /// </summary>
     public void UpdateVisuals()
     {
-        if (debug_mode)
+        if (GameManager.isDebug)
         {
             character = visual_character;
             buffs = visual_buffs;
@@ -58,10 +48,7 @@ public class GameSetup: MonoBehaviour
             visual_buffs = buffs;
             visual_easyMetters = easyMetters;
         }
-        Debug.Log($"GameSetup Updated, Debug? {debug_mode}");
     }
-
-
     /// <summary>
     /// Basado en los datos obtenidos y, los guardados formulará
     /// una cantidad de metros que el jugador tendrá "Facil"

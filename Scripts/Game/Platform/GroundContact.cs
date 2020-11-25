@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class GroundContact : MonoBehaviour
 {
-    #region Var
-
     private BoxCollider2D boxCollider;
     public GameObject platform;
+    public bool isField = false;
 
-
-    #endregion
-    #region Events
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        boxCollider.isTrigger = true;
 
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.isTrigger = !isField;
         //Ajusta el collider con el tamaño de la caja
         boxCollider.size = platform.transform.localScale;
+        boxCollider.offset = platform.transform.localPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,11 +27,4 @@ public class Platform : MonoBehaviour
             boxCollider.isTrigger = false;
         }
     }
-
-    #endregion
-    #region Methods
-
-
-
-    #endregion
 }

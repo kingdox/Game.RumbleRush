@@ -24,6 +24,17 @@ public class Data
     // -> Cantidad maxima de un tipod e buff
     public readonly int maxBuffCount = 99;
 
+    public readonly int platformMaxY = 10;
+
+    //-> Usado para saber el rango separador entre las plataformas para no generarse pegado.
+    public readonly int platformRangeY = 3;
+
+    // -> Cantidad establecida para eliminar las plataformas
+    public readonly int safeBoundDeleteX = 5;
+
+    //public readonly int platformLimitX = 10;
+    //destroyMargin
+
     public enum Scenes
     {
         MenuScene,

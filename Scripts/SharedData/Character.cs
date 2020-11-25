@@ -34,16 +34,16 @@ public class CharacterData
         TKey.POW_Hunter,
         TKey.POW_Brutus
     };
-    //-> velocidad de los objetos que vendrán
-    public readonly float[] speed = { 11, 1, 1, 1 };
-    //-> vida del personaje
-    public readonly float[] energy = { 1, 11, 1, 1 };
-    //-> fuerza del salto
-    public readonly float[] jump = { 8, 1, 11, 1 };
+    //-> velocidad de los objetos que vendrán (min 10, max 20?)
+    public readonly float[] speed = { 20, 10, 15, 15 };
+    //-> vida del personaje  (min 10, max 20)
+    public readonly float[] energy = { 15, 20, 10, 15 };
+    //-> fuerza del salto (min 8, max 12)
+    public readonly float[] jump = { 10, 8, 10, 12 };
     //-> Cooldown de la habilidad
-    public readonly float[] cooldown = { 1, 1, 11, 1 };
+    public readonly float[] cooldown = { 10.0f, 15.0f, 10.0f, 20f};
     //-> Costo para usarlo
-    public readonly int[] cost = { 0, 22, 33, 44 };
+    public readonly int[] cost = { 0, 150, 200, 300 };
 
 }
 
