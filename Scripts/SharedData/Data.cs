@@ -29,9 +29,8 @@ public class Data
     //-> Usado para saber el rango separador entre las plataformas para no generarse pegado.
     public readonly int platformRangeY = 3;
 
-    // -> Cantidad establecida para eliminar las plataformas
-    public readonly int safeBoundDeleteX = 5;
-
+    
+        
     //public readonly int platformLimitX = 10;
     //destroyMargin
 
@@ -50,9 +49,24 @@ public class Data
 /// Aquí se poseerán las funcionalidades
 /// que pueden usarse en otros sitios
 /// los que puede que se usen mas de una vez
+/// Puede que sean utiles para futuros proyectos
 /// </summary>
 public struct DataFunc
 {
+
+    /// <summary>
+    /// sacas el alto aprox de una camara o la activa por defecto
+    /// </summary>
+    /// <param name="camera"></param>
+    /// <returns>el alto de la camara en unidades de Unity</returns>
+    public static float GetScreenHeightUnit(Camera camera = null) => camera ? camera.orthographicSize * 2f : Camera.main.orthographicSize * 2f;
+
+    /// <summary>
+    /// Sacas el ancho de la pantalla basado en el alto de la camara 
+    /// </summary>
+    /// <param name="camHeight"></param>
+    /// <returns>regresa el Ancho de la camara en unidades Unity</returns>
+    public static float GetScreenWidthUnit(float camHeight) => camHeight * (Screen.width / Screen.height);
 
     /// <summary>
     /// Activa o desactiva el objeto basado en una condición recibida
@@ -77,9 +91,14 @@ public struct DataFunc
     }
 
     /// <summary>
-    /// Cambiamos a la escena indicada
+    /// Cambiamos a la escena indicada en numerico
     /// </summary>
     /// <param name="index"></param>
     public static void ChangeSceneTo(int index) => SceneManager.LoadScene(index);
+    /// <summary>
+    /// Cambiamos a la escena indicada con el nombre
+    /// </summary>
+    /// <param name="name"></param>
+    public static void ChangeSceneTo(string name) => SceneManager.LoadScene(name);
 
 }

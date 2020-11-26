@@ -5,116 +5,64 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     #region Var
-
-    public Camera camera;
-    public int destroyMargin;
-
+    private float endOfPlatform_X;
+    [Header("Settings")]
+    // -> para conocer el final de la plataforma
     public GameObject bodyPlatform;
-
-    /// <summary>
-    /// Si el indicator de laa plataforma
-    /// posee una distancia de -X cantidad se elimina, significando que ha
-    /// terminado su uso con el player, luego se le añade un extras
-    /// </summary>
+    //-> para conocer junto con bodyPlatform la pos final de la plataforma
+    //(podría invertir el indicador y evitarme ese calculo, pero lo dejaré así por
+    // que me permite saber el tamaño de la plataforma....
     public GameObject indicator;
-
-
-
-
     #endregion
     #region Events
-
-    private void Awake()
+    private void Start()
     {
-        camera = Camera.main;
+        endOfPlatform_X = indicator.transform.position.x + bodyPlatform.transform.localScale.x;
     }
     private void Update()
     {
         CheckDestroyMargin();
     }
-    private void OnDrawGizmos()
+    private void OnDestroy()
     {
-        Vector3 range = Vector3.up * (Data.data.platformRangeY / 2);
-        Vector3 ind_pos = indicator.transform.position;
-        Vector3 end_pos = Vector3.right * bodyPlatform.transform.localScale.x;
-
-
-        Gizmos.color = Color.white;
-
-        // Area donde otras no pueden spawnearse
-        Gizmos.DrawLine( ind_pos + range, ind_pos - range);
-
-        // Area donde muestra la distancia de la plataforma
-        Gizmos.DrawLine( ind_pos - range, ind_pos - range + end_pos );
-
-        // Area donde al hacer contacto se elimina
-        Gizmos.DrawLine(
-            ind_pos + range,
-            (ind_pos + end_pos - range) 
-            );
-
-        //Descubrimos el punto para saber si podemos eliminar la plataforma
-        Vector3 safeDestroy = ind_pos + end_pos + (Vector3.right * Data.data.safeBoundDeleteX);
-        Gizmos.DrawLine(ind_pos, safeDestroy);
-
-
-
-        var unitsInY = Camera.main.orthographicSize * 2f; // ~10~
-        var unitsInX = unitsInY * ((float)Screen.width / (float)Screen.height);
-
-        Debug.Log(unitsInX);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(
-            (Vector3.left * (unitsInX / 2)) + Camera.main.transform.position,
-            Camera.main.transform.position);
-        // distancia en pixeles de la camara, transforma r en unidades de unity
-        //float cameraDistance = camera.scaledPixelWidth / 2;
-        //camera = Camera.main;
-        //Debug.Log(camera.orthographicSize);
-        //Gizmos.DrawLine(camera.transform.position)
-
+        //LLamamos al generator
+        //TODO
     }
     #endregion
     #region Methods
 
+    /// <summary>
+    /// Revisa si ha pasado el limite especificado para que sea borrado sin verse en pantalla, Elimina si la plataforma atraviesa el margen,
+    /// </summary>
+    private void CheckDestroyMargin(){
+        float margin = GameManager.GetCamera().transform.position.x + (Vector3.left * GameManager.GetCameraWidth()).x;
+        if (endOfPlatform_X < margin) DestroyPlatform();
+    }
 
     /// <summary>
     /// Elimina la plataforma y manda la señal al generador de que una plataforma ha sido eliminada
     /// </summary>
-    private void DestroyPlatform()
-    {
-        // solicito que genere nueva plataforma
-        //Manager.instance.Spawn();
-        Debug.Log("Eliminate...");
-        //Destroy(gameObject);
-    }
+    private void DestroyPlatform() => Destroy(gameObject);
 
+    #endregion
+    #region DEBBUG
 
     /// <summary>
-    /// Revisa si ha pasado el limite especificado para
-    /// que sea borrado sin verse en pantalla
+    /// Calculos shidos xdxdxd
     /// </summary>
-    private void CheckDestroyMargin()
-    {
-        if (transform.position.x < camera.transform.position.x - destroyMargin)
-        {
-            DestroyPlatform();
-        }
+    private void OnDrawGizmos(){
+        float camHeightAprox = DataFunc.GetScreenHeightUnit();
 
+        Vector3 range = Vector3.up * (camHeightAprox / 2);
+        Vector3 ind_pos = indicator.transform.position;
+        Vector3 end_pos = Vector3.right * bodyPlatform.transform.localScale.x;
+        Vector3 safeDestroy = ind_pos + end_pos;
 
-        Vector2 lineA = new Vector3(
-            camera.transform.position.x - destroyMargin,
-            camera.transform.position.y + Data.data.platformMaxY
-        );
-        Vector2 lineB = new Vector3(
-            camera.transform.position.x - destroyMargin,
-            camera.transform.position.y
-        );//camera.transform.position.y - 10f
+        Gizmos.color = Color.white;
+        // Area donde al hacer contacto se elimina, es el final de la plataforma
+        //NOTA: Aqui range no significa nada, es solo para uqe se vea coherente en el debugger y no moleste
+        Gizmos.DrawLine(safeDestroy + range / 2, safeDestroy - range / 2);
 
-        //Gizmos.color = Color.green;
-        Debug.DrawLine(lineA, lineB, Color.green);
     }
-
     #endregion
 }
