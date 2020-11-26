@@ -6,7 +6,7 @@ public class Platform : MonoBehaviour
 {
     #region Var
 
-    private Camera camera;
+    public Camera camera;
     public int destroyMargin;
 
     public GameObject bodyPlatform;
@@ -18,11 +18,20 @@ public class Platform : MonoBehaviour
     /// </summary>
     public GameObject indicator;
 
-    
+
 
 
     #endregion
     #region Events
+
+    private void Awake()
+    {
+        camera = Camera.main;
+    }
+    private void Update()
+    {
+        CheckDestroyMargin();
+    }
     private void OnDrawGizmos()
     {
         Vector3 range = Vector3.up * (Data.data.platformRangeY / 2);
@@ -49,19 +58,43 @@ public class Platform : MonoBehaviour
         Gizmos.DrawLine(ind_pos, safeDestroy);
 
 
+
+        var unitsInY = Camera.main.orthographicSize * 2f; // ~10~
+        var unitsInX = unitsInY * ((float)Screen.width / (float)Screen.height);
+
+        Debug.Log(unitsInX);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(
+            (Vector3.left * (unitsInX / 2)) + Camera.main.transform.position,
+            Camera.main.transform.position);
+        // distancia en pixeles de la camara, transforma r en unidades de unity
+        //float cameraDistance = camera.scaledPixelWidth / 2;
+        //camera = Camera.main;
+        //Debug.Log(camera.orthographicSize);
+        //Gizmos.DrawLine(camera.transform.position)
+
     }
     #endregion
     #region Methods
 
 
+    /// <summary>
+    /// Elimina la plataforma y manda la señal al generador de que una plataforma ha sido eliminada
+    /// </summary>
     private void DestroyPlatform()
     {
         // solicito que genere nueva plataforma
         //Manager.instance.Spawn();
-
+        Debug.Log("Eliminate...");
         //Destroy(gameObject);
     }
 
+
+    /// <summary>
+    /// Revisa si ha pasado el limite especificado para
+    /// que sea borrado sin verse en pantalla
+    /// </summary>
     private void CheckDestroyMargin()
     {
         if (transform.position.x < camera.transform.position.x - destroyMargin)
