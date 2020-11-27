@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual_character:
-    type: 0
+    type: 3
     keyName: 0
     keyPower: 0
     speed: 10
@@ -599,6 +599,7 @@ MonoBehaviour:
     cost: 0
   visual_buffs: []
   visual_easyMetters: 0
+  justType: 1
 --- !u!1 &252172106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1364,7 @@ GameObject:
   - component: {fileID: 679782774}
   - component: {fileID: 679782775}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: Generator (Floor & Platform)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

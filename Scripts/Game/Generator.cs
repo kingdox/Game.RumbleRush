@@ -83,7 +83,7 @@ public class Generator : MonoBehaviour
     {
         if (isFloor) _.SpawnFloor();
         else _.SpawnPlatform();
-        Debug.Log($"Generando, es suelo? {isFloor}");
+        //Debug.Log($"Generando, es suelo? {isFloor}");
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class Generator : MonoBehaviour
     /// </summary>
     private void SpawnFloor()
     {
-        float X = lastFloor_size.x + lastFloor_position.x + Random.Range(0,Data.data.floorRangeX);
+        float X = lastFloor_size.x + lastFloor_position.x; //+ Random.Range(0,Data.data.floorRangeX);
         Vector2 _newPos = new Vector2(X, 0);
 
         GameObject _obj = Instantiate(
@@ -123,7 +123,7 @@ public class Generator : MonoBehaviour
 
          
         float RandomY_min = 1;
-        float RandomY_max = GameManager.GetCameraHeight();
+        float RandomY_max = GameManager.GetCameraHeight() / 1.5f ;
 
         float RandomY = Random.Range(RandomY_min, RandomY_max);
 
@@ -134,7 +134,7 @@ public class Generator : MonoBehaviour
         RandomY = Mathf.Clamp(RandomY, minYRange, maxYRange);
 
         //Distancia aprox entre las plataformas
-        float range = lastPlatform_position.y + 2;
+        //float range = lastPlatform_position.y + lastPlatform_size.y;
 
 
         Vector2 _newPos = new Vector2(RandomX, RandomY);
@@ -156,7 +156,6 @@ public class Generator : MonoBehaviour
 
         _obj.transform.position = new Vector3(_newPos.x, _newPos.y,1);
 
-        //TODO hay que sacarle el size de esto
         lastPlatform_size = _obj.transform.localScale;
 
 
@@ -183,7 +182,7 @@ public class Generator : MonoBehaviour
         float camHeightAprox = DataFunc.GetScreenHeightUnit();
         float camWidthAprox = DataFunc.GetScreenWidthUnit(camHeightAprox);
 
-        Vector3 range = Vector3.up * (camHeightAprox / 2);
+        Vector3 range = Vector3.up * (camHeightAprox / 2.5f);
 
         Vector3 safeElimination = Camera.main.transform.position + (Vector3.left * camWidthAprox);
         Vector3 safeGeneration = Camera.main.transform.position + (Vector3.right * camWidthAprox);

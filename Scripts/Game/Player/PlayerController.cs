@@ -7,6 +7,12 @@ using UnityEngine;
 #region ########### CLASS
 public class PlayerController : MonoBehaviour
 {
+    /*
+     * Aqui manejamos el sistema de ataque y salto del player
+     * que son los ocntroles del jugador
+     */
+
+
     #region ################################################# VARIABLES
     // referencia del rigidBody
     private Rigidbody2D rigidBody;
@@ -18,7 +24,6 @@ public class PlayerController : MonoBehaviour
     #region ################################### Eventos
     private void Start()
     {
-
         rigidBody = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -77,16 +82,11 @@ public class PlayerController : MonoBehaviour
 
         Vector2 _tempVelocity = rigidBody.velocity;
         //TODO
-        _tempVelocity.x = Mathf.MoveTowards(_tempVelocity.x, GameSetup.character.speed + 5, (Time.deltaTime * GameSetup.character.speed));
-
+        _tempVelocity.x = Mathf.MoveTowards(_tempVelocity.x, GameSetup.character.speed , Time.deltaTime);
         //Asigna la velocidad 
         rigidBody.velocity = _tempVelocity;
 
     }
     #endregion
 }
-#endregion
-
-#region ##### DEBUG TEXT
-
 #endregion

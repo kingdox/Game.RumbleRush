@@ -92,5 +92,10 @@ public class GameManager : MonoBehaviour
         camWidth = DataFunc.GetScreenWidthUnit(camHeight);
     }
 
+    public static void GameOver()
+    {
+        Debug.Log("GG");
+    }
+
     #endregion
 }
