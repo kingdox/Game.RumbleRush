@@ -5,47 +5,10 @@ using UnityEngine;
 #endregion
 public class Generator : MonoBehaviour
 {
+    private static Generator _;
     #region Var
-    [Header("Platform info")]
-    public float Xmin = 1f;
-    public float Xmax = 5f;
-    public float Ymin = -3f;
-    public float Ymax = 3f;
 
     /*
-        QUé nesecitamos saber?
-
-        - 
-        - PosY de la ultima aerea generada
-        - DistanciaX de la ultima aerea generada
-        - Contado de Plataformas aereas creadas
-        - Limite de plataformas aereas en juego
-
-        - DistanciaX de la ultima Terrestre generada
-        - Contado de plataformas Terrestre creadas
-        - Limite de plataformas
-
-
-     */
-
-    /*
-     * La idea es que el primer aereo se genera en la linea verde de camara(Gizmos)
-     * y que luego con esa posición podemos crear la siguiente y así hasta 
-     * poseer X en pantalla
-     * para que tenga un toque random estas pueden estar a la mitad de la anterior plataforma como
-     * minimo, y como maximo es el espacio del personaje más el rango que tiene en los saltos (basado en su speed)?
-     * sino hardcodear eso y variarlo hasta que cuele
-     */
-
-
-
-    /*
-     *   nextPosition = platformContainer.position;
-        for (int x = 0; x < initialPlatforms; x++)
-        {
-            Spawn();
-        }
-
      * TODO:
      * Generator se encarga de:
      * 
@@ -58,8 +21,6 @@ public class Generator : MonoBehaviour
      *  3- Dependiendo de la distancia que este recorra, 
      *  cambiar las plataformas "faciles por las dificiles"
      *  
-     *  
-     *  
      *  //Notas
      *  Los monstruos, monedas y botiquines se generan con las plataformas, 
      *  de manera que no hay que preocuparse ya que estas estarán ahí
@@ -70,99 +31,136 @@ public class Generator : MonoBehaviour
      *   de manera que permita varíar dentro de ciertos parametros, así hay mayor diferencia
      */
 
-
-    [Header("Platform settings")]
-    public GameObject obj_platform;
-
-    // -> con esto sabremos donde deberíamos generar la siguiente plataforma  para que sea coherente
-    public float lastPlatformPosY;
-
-    [Header("BaseFloor Settings")]
-    ///Este servirá para tener el piso principal, este es unico y tiende a ser largo ?
-    public GameObject prefab_FieldPlatform;
-    public GameObject[] prefab_EasyPlatform;
-    public GameObject[] prefab_HardPlatform;
+    [Header("Platform Settings")]
+    private Vector2 lastPlatform_position;
+    private Vector2 lastPlatform_size;
+    public GameObject prefab_platform;
+    public GameObject obj_platformGroup;
 
 
-    /// <summary>
-    /// Con esto sabremos el rango que tiene que pasar para ser destruido sin mostrarse.
-    /// </summary>
-    public int destroyMargin;
-
-
-
-
-    //HACK
-
-    //Donde guardaremos las posiciones aereas, cambiar name luego TODO
-    Vector2 nextPosition;
-    Vector2 lastSizePlatform;
-    //Cantidad de plataformas que puedes colocar
-    public int limitPlatforms = 10;
+    [Header("Floor Settings")]
+    private Vector2 lastFloor_position;
+    private Vector2 lastFloor_size;
+    public GameObject prefab_floor;
+    public GameObject obj_floorGroup;
 
     #endregion
     #region Events
+    private void Awake()
+    {
+        if (_ == null) _ = this;
+        else if (_ != this) Destroy(gameObject);
+    }
     private void Start()
     {
         //platformContainer.position;
         //Asignamos el primer spawn
-        nextPosition = GameManager.GetCameraWidth() * Vector2.right;
+        lastPlatform_position = GameManager.GetCameraWidth() * Vector2.right;
+        lastFloor_position = GameManager.GetCameraWidth() * Vector2.right;
 
-        for (int x = 0; x < limitPlatforms; x++)
+        lastFloor_size = prefab_floor.transform.localScale;
+
+        for (int x = 0; x < Data.data.limitPlatformsInGame; x++)
         {
-            Spawn();
+            SpawnPlatform();
         }
+        for (int j = 0; j < Data.data.limitBaseFloorInGame; j++)
+        {
+            SpawnFloor();
+        }
+
     }
+
     #endregion
     #region Methods
 
+    /// <summary>
+    /// Dependiendo de lo que se le solicita a generar
+    /// hará un suelo o una plataforma
+    /// </summary>
+    /// <param name="isFloor"></param>
+    public static void CheckSpawnTo(bool isFloor)
+    {
+        if (isFloor) _.SpawnFloor();
+        else _.SpawnPlatform();
+        Debug.Log($"Generando, es suelo? {isFloor}");
+    }
+
+    /// <summary>
+    /// Generas más suelo, este debe estar pegado del ultimo
+    /// </summary>
+    private void SpawnFloor()
+    {
+        float X = lastFloor_size.x + lastFloor_position.x + Random.Range(0,Data.data.floorRangeX);
+        Vector2 _newPos = new Vector2(X, 0);
+
+        GameObject _obj = Instantiate(
+            prefab_floor,
+            _newPos,
+            Quaternion.identity,
+            obj_floorGroup.transform
+        );
+
+        lastFloor_position = _obj.transform.position;
+        lastFloor_size = _obj.transform.localScale;
+    }
+
+    
 
 
     /// <summary>TODO
     /// Crea una plataforma
     /// </summary>
-    private void Spawn()
+    private void SpawnPlatform()
     {
         //Temporal
-        int @rangeAdrede = 17;
 
-        float RandomX_min = lastSizePlatform.x / 2;
-        float RandomX_max = nextPosition.x + @rangeAdrede;
-        float RandomX = Random.Range(RandomX_min, RandomX_max);
+        float RandomX_min = lastPlatform_size.x / 2;
+        float RandomX_max = Mathf.Clamp(Data.data.platformRangeX, RandomX_min, RandomX_min + Data.data.platformRangeX);
 
-        int @verticalMinAdrede = 1;
-        float RandomY_min = @verticalMinAdrede;
+        //Sacamos el rango de distancia entre la ultima plataforma y la que se va a generar
+        float RandomX = Random.Range(RandomX_min, RandomX_max) + lastPlatform_position.x; 
+
+         
+        float RandomY_min = 1;
         float RandomY_max = GameManager.GetCameraHeight();
 
         float RandomY = Random.Range(RandomY_min, RandomY_max);
 
+        //Con esto sabemos con aproximación hacia qué lado está orientado
+        float minYRange = Mathf.Clamp(lastPlatform_position.y - Data.data.platformRangeY, RandomY_min, RandomY_max);
+        float maxYRange = Mathf.Clamp(lastPlatform_position.y + Data.data.platformRangeY, RandomY_min, RandomY_max);
+
+        RandomY = Mathf.Clamp(RandomY, minYRange, maxYRange);
+
+        //Distancia aprox entre las plataformas
+        float range = lastPlatform_position.y + 2;
+
+
         Vector2 _newPos = new Vector2(RandomX, RandomY);
 
         //Instanciamos el prefab de la plataforma en una pos random basado en los rangos como hijo del contenedor
-        //GameObject _obj = Instantiate(
-        //    prefabPlatforms[randomPlatform],
-        //    _randomPos,
-        //    Quaternion.identity,
-        //    platformContainer
-        //);
+        GameObject _obj = Instantiate(
+            prefab_platform,
+            _newPos,
+            Quaternion.identity,
+            obj_platformGroup.transform
+        );
+
+        // test
+        float size_X = _obj.transform.localScale.x;
+            size_X  = Random.Range(size_X, size_X + size_X * 2);
+        _obj.transform.localScale = new Vector3(size_X, _obj.transform.localScale.y,1);
+
+        _newPos += Vector2.right * size_X / 2;
+
+        _obj.transform.position = new Vector3(_newPos.x, _newPos.y,1);
+
+        //TODO hay que sacarle el size de esto
+        lastPlatform_size = _obj.transform.localScale;
 
 
-        Debug.Log(nextPosition +" | " + _newPos);
-
-
-        nextPosition = _newPos;
-
-        //PASOS
-
-        //1.Conocer la posición donde será creado:
-        //- Calcular -> randomX entre (nextPosition - tamañoDeAnteriorPlatforma/2), XCantidad
-
-        //2.Instanciarlo y colocarlo en PlatformGroup como hijo con la pos encontrada
-
-        //3. Guardar su pos y el tamaño que posee
-
-
-
+        lastPlatform_position = _newPos;
     }
 
 
@@ -200,47 +198,3 @@ public class Generator : MonoBehaviour
     }
     #endregion
 }
-
-/*
- * 
- * 
- * /// <summary>
-    /// Genera una nueva plataforma en la posicion aleatoria dentro de los margenes definidos
-    /// </summary>
-    public void Spawn()
-    {
-
-        
-        Vector2 _randomPos = nextPosition + new Vector2(
-            Random.Range(Xmin, Xmax), 
-            Random.Range(Ymin, Ymax)
-        );
-        if (_randomPos.y < GameManager._.lowerLimit) _randomPos.y = GameManager._.lowerLimit;
-        
-        //_randomPos.y = Mathf.Clamp(_randomPos.y, GameManager._.lowerLimit, Ymax )
-
-        int randomPlatform = Random.Range(0, prefabPlatforms.Length);
-
-        //Instanciamos el prefab de la plataforma en una pos random basado en los rangos como hijo del contenedor
-        GameObject _obj = Instantiate(
-            prefabPlatforms[randomPlatform],
-            _randomPos,
-            Quaternion.identity,
-            platformContainer
-        );
-
-
-        // tamaño de la ulima plataforma generada
-        float _temPlatformSize = _obj.GetComponent<PlatformController>().platformSize; 
-
-        //Separo al pos random tanto como tamaño tenga la nueva generada
-        _randomPos.x += _temPlatformSize;
-
-        // actualizo la pos de la siguiente plataforma
-        nextPosition = _randomPos;
-
-
-
-    }
- * 
- */

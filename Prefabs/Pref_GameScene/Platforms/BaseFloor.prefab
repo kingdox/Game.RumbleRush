@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2437048703611747164}
   - component: {fileID: 2437048703611747166}
   - component: {fileID: 2437048703611747167}
-  - component: {fileID: 721367422854613048}
   m_Layer: 0
-  m_Name: Field Platform
+  m_Name: BaseFloor
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2437048703611747165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 40, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2437048703903093952}
   m_Father: {fileID: 0}
@@ -58,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 0.5}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &2437048703611747167
 MonoBehaviour:
@@ -72,22 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c92f68385d1c43a4ae1e5eae0eb2bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyPlatform: {fileID: 2437048703901870519}
   indicator: {fileID: 3514879854116853041}
---- !u!114 &721367422854613048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2437048703611747165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee64291b2ef484ecd845260f8552b57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platform: {fileID: 2437048703901870519}
-  isField: 0
+  isFloor: 1
 --- !u!1 &2437048703901870519
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 2437048703901870519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 40, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4589704000608911895}
   m_Father: {fileID: 2437048703903093952}

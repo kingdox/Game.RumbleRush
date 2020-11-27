@@ -22,17 +22,20 @@ public class Data
     // -> Valor de cada monstruo eliminado
     public readonly int monsterValue = 5;
     // -> Cantidad maxima de un tipod e buff
-    public readonly int maxBuffCount = 99;
+    public readonly int maxBuffCount = 20;
 
-    public readonly int platformMaxY = 10;
+    [Header("Platform info")]
+    public readonly int limitPlatformsInGame = 7;
 
     //-> Usado para saber el rango separador entre las plataformas para no generarse pegado.
-    public readonly int platformRangeY = 3;
+    public readonly float platformRangeY = 3.0f;
+    //-> Usado para conocer el rango se
+    public readonly float platformRangeX = 10.0f;
 
-    
-        
-    //public readonly int platformLimitX = 10;
-    //destroyMargin
+    [Header("Floor info")]
+    public readonly int limitBaseFloorInGame = 3;
+
+    public readonly float floorRangeX = 5.0f;
 
     public enum Scenes
     {
