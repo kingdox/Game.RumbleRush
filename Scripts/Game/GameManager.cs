@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+//Conocemos el estado del juego
+public enum GameStatus
+{
+    Paused,
+    InGame,
+    GameOver
+}
+
 [System.Serializable]
 public class GameManager : MonoBehaviour
 {
@@ -15,16 +23,21 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _;
 
-
     [Header("GameManager info")]
     public GameSetup gameSetup;
+
+    // vemos el estado del juego
+    public static GameStatus status;
+
     //Permite pausar los objetos del mapa
-    public static bool paused = false;
     public static bool isDebug = false;
 
 
+
+
+
     [Header("DEBUG")]
-    public bool visual_paused = false;
+    public GameStatus debug_status; 
     public bool visual_isDebug = false;
     #endregion
     #region Events
@@ -42,6 +55,7 @@ public class GameManager : MonoBehaviour
         isDebug = visual_isDebug;
         if (visual_isDebug) Debug.LogError("WARN ! --> DEBUG_MODE ON");
         gameSetup.UpdateVisuals();
+        PlayerManager.LoadPlayer();
     }
 
     void Update()
@@ -49,15 +63,28 @@ public class GameManager : MonoBehaviour
         isDebug = visual_isDebug;
         if (isDebug)
         {
-            paused = visual_paused;
+            status = debug_status;
+
         }
+        UpdateStatus();
     }
     #endregion
     #region Methods
-    public static void OnOffPause(bool condition)
+
+    /// <summary>
+    /// Actualizamos los efectos dependientes de los estados referentes al juego 
+    /// </summary>
+    private void UpdateStatus()
     {
-        //TODO
+        Time.timeScale = status != GameStatus.InGame ? 0 : 1;
+
     }
+
+    /// <summary>
+    /// Hace los cambios de estado entre juego y pausa, y viceversa
+    /// </summary>
+    /// <param name="condition"></param>
+    public static void OnOffPause(bool condition) => status = condition ? GameStatus.Paused : GameStatus.InGame;
 
 
     /// <summary>
@@ -95,6 +122,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver()
     {
         Debug.Log("GG");
+        status = GameStatus.GameOver;
     }
 
     #endregion

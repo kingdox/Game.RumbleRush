@@ -24,6 +24,9 @@ public class Data
     // -> Cantidad maxima de un tipod e buff
     public readonly int maxBuffCount = 20;
 
+    [Header("Player")]
+    public readonly float lifeReductor = 10;
+
     [Header("Platform info")]
     public readonly int limitPlatformsInGame = 7;
 

@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Settings")]
     public bool canJump = false;
     public bool falling = false;
+
     #endregion
     #region ################################### Eventos
     private void Start()
@@ -28,15 +29,16 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        CheckPlayer();
-
-        Controls();
+        if (GameManager.status == GameStatus.InGame)
+        {
+            CheckPlayerJump();
+            Controls();
+        }
         //DeadZoneCheck();
     }
     private void LateUpdate()
     {
         Movement();
-
     }
     #endregion
 
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
     /// Se revisa el estado del player
     /// así se sabrá si puede saltar o no.
     /// </summary>
-    private void CheckPlayer()
+    private void CheckPlayerJump()
     {
         if (rigidBody.velocity.y == 0 && falling) canJump = true;
         falling = rigidBody.velocity.y < 0;
@@ -77,12 +79,8 @@ public class PlayerController : MonoBehaviour
     }
     public void Movement()
     {
-        //revisamos si no esta moviendose automaticamente, de ser así se va
-        if (GameManager.paused) return;
-
         Vector2 _tempVelocity = rigidBody.velocity;
-        //TODO
-        _tempVelocity.x = Mathf.MoveTowards(_tempVelocity.x, GameSetup.character.speed , Time.deltaTime);
+        _tempVelocity.x = Mathf.MoveTowards(_tempVelocity.x, PlayerManager.player.speedActual , Time.deltaTime);
         //Asigna la velocidad 
         rigidBody.velocity = _tempVelocity;
 

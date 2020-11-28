@@ -91,7 +91,7 @@ public class Generator : MonoBehaviour
     /// </summary>
     private void SpawnFloor()
     {
-        float X = lastFloor_size.x + lastFloor_position.x; //+ Random.Range(0,Data.data.floorRangeX);
+        float X = lastFloor_size.x + lastFloor_position.x + 0.01f; //+ Random.Range(0,Data.data.floorRangeX);
         Vector2 _newPos = new Vector2(X, 0);
 
         GameObject _obj = Instantiate(
@@ -109,35 +109,36 @@ public class Generator : MonoBehaviour
 
 
     /// <summary>TODO
-    /// Crea una plataforma
+    /// Crea una plataforma con unos margenes de tamaño y en una posición aleatoria
+    /// dentro de otros parametros con respecto a la camara y la ultima plataforma
     /// </summary>
     private void SpawnPlatform()
     {
         //Temporal
 
-        float RandomX_min = lastPlatform_size.x / 2;
-        float RandomX_max = Mathf.Clamp(Data.data.platformRangeX, RandomX_min, RandomX_min + Data.data.platformRangeX);
+        float _minX = lastPlatform_size.x / 2;
+        float _maxX = Mathf.Clamp(Data.data.platformRangeX, _minX, _minX + Data.data.platformRangeX);
 
         //Sacamos el rango de distancia entre la ultima plataforma y la que se va a generar
-        float RandomX = Random.Range(RandomX_min, RandomX_max) + lastPlatform_position.x; 
+        float _randomX = Random.Range(_minX, _maxX) + lastPlatform_position.x; 
 
          
-        float RandomY_min = 1;
-        float RandomY_max = GameManager.GetCameraHeight() / 1.5f ;
+        float _minY = 1;
+        float _maxY = GameManager.GetCameraHeight() / 1.5f ;
 
-        float RandomY = Random.Range(RandomY_min, RandomY_max);
+        float _randomY = Random.Range(_minY, _maxY);
 
         //Con esto sabemos con aproximación hacia qué lado está orientado
-        float minYRange = Mathf.Clamp(lastPlatform_position.y - Data.data.platformRangeY, RandomY_min, RandomY_max);
-        float maxYRange = Mathf.Clamp(lastPlatform_position.y + Data.data.platformRangeY, RandomY_min, RandomY_max);
+        float minYRange = Mathf.Clamp(lastPlatform_position.y - Data.data.platformRangeY, _minY, _maxY);
+        float maxYRange = Mathf.Clamp(lastPlatform_position.y + Data.data.platformRangeY, _minY, _maxY);
 
-        RandomY = Mathf.Clamp(RandomY, minYRange, maxYRange);
+        _randomY = Mathf.Clamp(_randomY, minYRange, maxYRange);
 
         //Distancia aprox entre las plataformas
         //float range = lastPlatform_position.y + lastPlatform_size.y;
 
 
-        Vector2 _newPos = new Vector2(RandomX, RandomY);
+        Vector2 _newPos = new Vector2(_randomX, _randomY);
 
         //Instanciamos el prefab de la plataforma en una pos random basado en los rangos como hijo del contenedor
         GameObject _obj = Instantiate(
@@ -147,7 +148,7 @@ public class Generator : MonoBehaviour
             obj_platformGroup.transform
         );
 
-        // test
+        //Esto es para establecerle una escala a la plataforma y ajustarla a su nueva pos...
         float size_X = _obj.transform.localScale.x;
             size_X  = Random.Range(size_X, size_X + size_X * 2);
         _obj.transform.localScale = new Vector3(size_X, _obj.transform.localScale.y,1);
@@ -156,9 +157,9 @@ public class Generator : MonoBehaviour
 
         _obj.transform.position = new Vector3(_newPos.x, _newPos.y,1);
 
+
+        //Les asignamos los valores a los last...
         lastPlatform_size = _obj.transform.localScale;
-
-
         lastPlatform_position = _newPos;
     }
 
