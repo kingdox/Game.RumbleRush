@@ -37,6 +37,13 @@ public class PlayerManager : MonoBehaviour
 
     //private Character player;
 
+    [Header("Info")]
+    public float mettersActual;
+    public float killsActual;
+
+    [Header("Settings")]
+    public GameObject obj_player;
+
 
     #endregion
     #region EVENT
@@ -50,7 +57,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (GameManager.status == GameStatus.InGame)
         {
-            UpdateEnergy();
+            UpdateRun();
             CheckPlayerStatus();
         }
     }
@@ -75,11 +82,14 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Actualiza el estado de la barra de energía
     /// para que esta se reduzca poco a poco a medida que el jugador juega
+    /// también aumenta los metros recorridos...
     /// </summary>
-    private void UpdateEnergy()
+    private void UpdateRun()
     {
         energyActual -= Time.deltaTime / Data.data.lifeReductor;
-
+        
+        mettersActual = (float)System.Math.Round(obj_player.transform.position.x / Data.data.metter ,1);
+        cooldownActual = Mathf.Clamp(cooldownActual + Time.deltaTime , 0, cooldownMax);
     }
 
     /// <summary>

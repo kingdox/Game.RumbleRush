@@ -70,12 +70,22 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        if (!canJump) return;
+        if (!canJump)
+        {
+            if (!falling)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, -0.1f);
+            }
+            //rigidBody.AddForce(Vector2.up * GameSetup.character.jump, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
+            rigidBody.AddForce(Vector2.up * GameSetup.character.jump, ForceMode2D.Impulse);
 
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
-        rigidBody.AddForce(Vector2.up * GameSetup.character.jump, ForceMode2D.Impulse);
+            canJump = false;
+        }
 
-        canJump = false;
     }
     public void Movement()
     {

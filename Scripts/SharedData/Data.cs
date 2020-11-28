@@ -15,9 +15,13 @@ public class Data
     public static Data data = new Data();
 
     public readonly string savedPath = "saved8.txt";
-    public readonly string version = "v0.1.1";
-    
+    public readonly string version = "v0.1.5";
+
     //Datos especificos
+
+    /// <summary>Valor de 1 unidad de metro</summary>
+    public readonly float metter = 10;
+
 
     // -> Valor de cada monstruo eliminado
     public readonly int monsterValue = 5;
@@ -61,7 +65,7 @@ public struct DataFunc
 {
 
     /// <summary>
-    /// sacas el alto aprox de una camara o la activa por defecto
+    /// sacas el alto aprox, de una camara o la activa por defecto
     /// </summary>
     /// <param name="camera"></param>
     /// <returns>el alto de la camara en unidades de Unity</returns>
@@ -107,4 +111,46 @@ public struct DataFunc
     /// <param name="name"></param>
     public static void ChangeSceneTo(string name) => SceneManager.LoadScene(name);
 
+    /// <summary>
+    ///  Saca el porcentaje de la cantidad y el maximo en caso de tener
+    /// </summary>
+    /// <param name="count"></param>
+    /// <param name="Max"></param>
+    /// <returns>El porcentaje de count sobre el max</returns>
+    public static float KnowPercentOfMax(float count, float max) => count / max * 100;
+
+
+    /// <summary>
+    /// Buscamos el parametro del color que va a ser cambiado.
+    /// el parametro debe estar entre los rangos de los parametros de color y en su orden:
+    /// [R,G,B,A] --> iniciando en 0
+    /// </summary>
+    /// <param name="c"></param>
+    /// <param name="param"></param>
+    /// <param name="val"></param>
+    /// <returns>Devuelve el color con el cambio en el parametro</returns>
+    public static Color SetColorParam(Color c, int i, float val)
+    {
+        float[] _c ={c.r,c.g,c.b,c.a};
+        if (i != Mathf.Clamp(i, 0, _c.Length))
+        {
+            Debug.LogError($"Indice errado, favor usar un enum de parametros de color o usarlo bien :(");
+            return c;
+        }
+        _c[i] = val;
+        Color newColor = new Color(_c[0], _c[1], _c[2], _c[3]);
+        return newColor;
+    }
+
+
+    /// <summary>
+    /// Revisa el valor y en caso de poseer -1 que, en este caso
+    /// significa "Por defecto" entonces mantiene el valor anterior
+    /// </summary>
+    /// <param name="val"></param>
+    /// <param name="lastVal"></param>
+    /// <returns>Devuelve un nuevo valor o el anterior del contexto</returns>
+    private static float SetOrLet(float val, float lastVal) => val == -1 ? lastVal : val;
 }
+
+public enum ColorType{r,g,b,a}
