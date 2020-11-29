@@ -91,7 +91,7 @@ public class Generator : MonoBehaviour
     /// </summary>
     private void SpawnFloor()
     {
-        float X = lastFloor_size.x + lastFloor_position.x + 0.01f; //+ Random.Range(0,Data.data.floorRangeX);
+        float X = lastFloor_size.x + lastFloor_position.x + Random.Range(0,Data.data.floorRangeX);
         Vector2 _newPos = new Vector2(X, 0);
 
         GameObject _obj = Instantiate(

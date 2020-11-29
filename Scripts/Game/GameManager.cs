@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
         DataFunc.ObjOnOff(_.screenPause, status == GameStatus.Paused);
         DataFunc.ObjOnOff(_.screenGame, status == GameStatus.InGame);
         DataFunc.ObjOnOff(_.screenEnd, status == GameStatus.GameOver);
+
+        UIManager.LoadScreen();
     }
 
     /// <summary>
@@ -141,9 +143,23 @@ public class GameManager : MonoBehaviour
     public static void GameOver()
     {
         
-        Debug.Log("GG");
+        Debug.Log("GG, Game Over");
         status = GameStatus.GameOver;
         CheckScreens();
+
+        //Tomamos los datos guardados para poder editarlos
+        SavedData newSavedData = DataPass.GetSavedData();
+
+        newSavedData.lastMetersReached = PlayerManager.player.mettersActual;
+        newSavedData.lastMonstersKilled = PlayerManager.player.killsActual;
+
+        newSavedData.recordMetersReached = newSavedData.recordMetersReached > PlayerManager.player.mettersActual ? newSavedData.recordMetersReached : PlayerManager.player.mettersActual;
+        newSavedData.recordMonstersKilled = newSavedData.recordMonstersKilled > PlayerManager.player.killsActual ? newSavedData.recordMonstersKilled : PlayerManager.player.killsActual;
+
+        //Insertamos los datos
+        DataPass.SetData(newSavedData);
+        //Guardamos los datos
+        DataPass.SaveLoadFile(true);
 
     }
 

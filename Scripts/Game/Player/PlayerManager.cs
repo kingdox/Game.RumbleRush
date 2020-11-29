@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Info")]
     public float mettersActual;
-    public float killsActual;
+    public int killsActual;
 
     [Header("Settings")]
     public GameObject obj_player;
@@ -101,7 +101,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     private void CheckPlayerStatus()
     {
-        if (energyActual < 0)
+        if (energyActual < 0 || obj_player.transform.position.y < -2)
         {
             GameManager.GameOver();
         }
