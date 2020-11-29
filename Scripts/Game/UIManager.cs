@@ -60,7 +60,8 @@ public class UIManager : MonoBehaviour
     public Text text_endMoney;
     #endregion
     #region EVENTS
-    void Update()
+
+    private void Update()
     {
         ScreenUpdate();
     }
@@ -69,8 +70,9 @@ public class UIManager : MonoBehaviour
 
     /// <summary>
     /// Actualiza la pantalla correspondiente
+    /// quiena ctiva a este señor? TODO
     /// </summary>
-    private void ScreenUpdate()
+    private  void ScreenUpdate()
     {
         switch (GameManager.status)
         {

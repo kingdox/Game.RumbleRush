@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 //Conocemos el estado del juego
 public enum GameStatus
 {
+    Init,
     Paused,
     InGame,
     GameOver
@@ -27,46 +28,56 @@ public class GameManager : MonoBehaviour
     public GameSetup gameSetup;
 
     // vemos el estado del juego
-    public static GameStatus status;
+    public static GameStatus status = GameStatus.Init;
 
     //Permite pausar los objetos del mapa
     public static bool isDebug = false;
 
-
+    [Header("Screen Setting")]
+    public GameObject screenGame;
+    public GameObject screenPause;
+    public GameObject screenEnd;
 
 
 
     [Header("DEBUG")]
     public GameStatus debug_status; 
     public bool visual_isDebug = false;
+
     #endregion
     #region Events
     private void Awake()
     {
         if (_ == null) _ = this;
         else if (_ != this) Destroy(gameObject);
-
-
-
         SetCamera();
     }
     void Start()
     {
+        status = GameStatus.Init;
+        UpdateStatus();
+
+        // DEBUG
         isDebug = visual_isDebug;
         if (visual_isDebug) Debug.LogError("WARN ! --> DEBUG_MODE ON");
-        gameSetup.UpdateVisuals();
-        PlayerManager.LoadPlayer();
-    }
+        gameSetup.Debug_Visuals();
+        // Debug
 
+    }
     void Update()
     {
-        isDebug = visual_isDebug;
-        if (isDebug)
+        if (status == GameStatus.Init)
         {
-            status = debug_status;
+            Debug.Log("Run Game ? ");
+            status = GameStatus.InGame;
+        }
+        else
+        {
+            UpdateStatus();
 
         }
-        UpdateStatus();
+       
+           
     }
     #endregion
     #region Methods
@@ -77,15 +88,27 @@ public class GameManager : MonoBehaviour
     private void UpdateStatus()
     {
         Time.timeScale = status != GameStatus.InGame ? 0 : 1;
-
     }
 
     /// <summary>
     /// Hace los cambios de estado entre juego y pausa, y viceversa
     /// </summary>
     /// <param name="condition"></param>
-    public static void OnOffPause(bool condition) => status = condition ? GameStatus.Paused : GameStatus.InGame;
+    public static void OnOffPause(bool condition) {
 
+        status = condition ? GameStatus.Paused : GameStatus.InGame;
+        CheckScreens();
+    }
+
+    /// <summary>
+    /// Revisa el estado de las pantallas y si alguna debe activarse o desactivarse
+    /// </summary>
+    public static void CheckScreens()
+    {
+        DataFunc.ObjOnOff(_.screenPause, status == GameStatus.Paused);
+        DataFunc.ObjOnOff(_.screenGame, status == GameStatus.InGame);
+        DataFunc.ObjOnOff(_.screenEnd, status == GameStatus.GameOver);
+    }
 
     /// <summary>
     /// Cambia a la escena establecida
@@ -103,10 +126,6 @@ public class GameManager : MonoBehaviour
     public static Camera GetCamera() => _.cam;
 
 
-    //--- Privadas
-
-
-
     /// <summary>
     /// Asigna la camara y conocemos los parametros
     /// de ancho y alto 
@@ -121,8 +140,11 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver()
     {
+        
         Debug.Log("GG");
         status = GameStatus.GameOver;
+        CheckScreens();
+
     }
 
     #endregion

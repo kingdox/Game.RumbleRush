@@ -6,6 +6,7 @@ using UnityEngine;
 /// Aquí se posee toda la información
 /// referente a los Characters de cada uno.
 /// </summary>
+/// 
 public class CharacterData
 {
     [HideInInspector]
@@ -41,7 +42,7 @@ public class CharacterData
     //-> fuerza del salto (min 8, max 12)
     public readonly float[] jump = { 10, 8, 10, 12 };
     //-> Cooldown de la habilidad
-    public readonly float[] cooldown = { 10.0f, 15.0f, 10.0f, 20f};
+    public readonly float[] cooldown = { 30.0f, 60.0f, 25.0f, 40.0f};
     //-> Costo para usarlo
     public readonly int[] cost = { 0, 150, 200, 300 };
 

@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
             CheckPlayerJump();
             Controls();
         }
-        //DeadZoneCheck();
     }
     private void LateUpdate()
     {

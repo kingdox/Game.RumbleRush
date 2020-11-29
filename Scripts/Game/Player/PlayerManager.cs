@@ -44,18 +44,20 @@ public class PlayerManager : MonoBehaviour
     [Header("Settings")]
     public GameObject obj_player;
 
-
     #endregion
     #region EVENT
     private void Awake()
     {
         if (player == null) player = this;
         else if (player != this) Destroy(gameObject);
+
+        //GameSetup ya posee datos antes de que PlayerManager exista
+        LoadPlayer();
     }
    
     private void Update()
     {
-        if (GameManager.status == GameStatus.InGame)
+        if (GameManager.status == GameStatus.InGame )
         {
             UpdateRun();
             CheckPlayerStatus();
@@ -75,6 +77,7 @@ public class PlayerManager : MonoBehaviour
         player.energyMax= GameSetup.character.energy;
         player.energyActual = player.energyMax;
         player.cooldownMax = GameSetup.character.cooldown;
+
     }
 
 

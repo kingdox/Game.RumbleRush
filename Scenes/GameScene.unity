@@ -826,13 +826,12 @@ MonoBehaviour:
     keyName: 0
     keyPower: 0
     speed: 10
-    energy: 0
+    energy: 100
     jump: 15
     cooldown: 0
     cost: 0
   visual_buffs: []
   visual_easyMetters: 0
-  justType: 1
 --- !u!1 &252172106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,8 +1493,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSetup: {fileID: 251215197}
-  debug_status: 1
-  visual_isDebug: 1
+  screenGame: {fileID: 985255197}
+  screenPause: {fileID: 1166755391}
+  screenEnd: {fileID: 1540324526}
+  debug_status: 0
+  visual_isDebug: 0
 --- !u!4 &615543990
 Transform:
   m_ObjectHideFlags: 0
@@ -1898,7 +1900,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 713983577}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 615543989}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnOffPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &713983577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,7 +2498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985255198}
   m_Layer: 0
-  m_Name: Game
+  m_Name: Screen_Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2963,7 +2977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1166755392}
   m_Layer: 0
-  m_Name: Pause
+  m_Name: Screen_Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4204,7 +4218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1540324527}
   m_Layer: 0
-  m_Name: End
+  m_Name: Screen_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

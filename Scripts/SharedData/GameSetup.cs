@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 #endregion
 
-
 public class GameSetup: MonoBehaviour
 {
     #region Variables
 
     #region VISUAL-Variables que es DEBUG,
-    //_Este apartado es visual, solo visual...
-    [Header("Buff")]
+    [Header("DEBUG")]
+    [Space]
+    //_Este apartado es visual, pero con debug vez las cosas
     [SerializeField]
     private Character visual_character;
-    [Header("Buff")]
+    [Space]
     [SerializeField]
     private Buff[] visual_buffs;
     public float visual_easyMetters;
     #endregion
+
 
     // -> Personaje escogido, aquí manejaremos los datos
     public static Character character;
@@ -26,27 +27,24 @@ public class GameSetup: MonoBehaviour
     public static Buff[] buffs;
     public static float easyMetters;
 
-    [Header("DEBUG")]
-    //Solo funcionan si debug es activado
-    public bool justType;
+
     #endregion
     #region EVENT
-    
+  
     #endregion
     #region Methods
     /// <summary>
     /// Esto permite actualizar los datos reales que
     /// tenemos para verlos con el objeto asignado en el inspector
     /// </summary>
-    public void UpdateVisuals()
+    public void Debug_Visuals()
     {
         if (GameManager.isDebug)
         {
-            if (justType) visual_character.SetType();
+            visual_character.SetType();
             character = visual_character;
             buffs = visual_buffs;
             easyMetters = visual_easyMetters;
-
         }
         else
         {
@@ -55,12 +53,6 @@ public class GameSetup: MonoBehaviour
             visual_easyMetters = easyMetters;
         }
     }
-
-
-    ///Aqui haremos el porcentaje o las modificaciónes
-
-
-
 
     /// <summary>
     /// Basado en los datos obtenidos y, los guardados formulará
