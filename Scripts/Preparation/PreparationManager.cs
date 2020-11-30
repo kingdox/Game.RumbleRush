@@ -72,7 +72,7 @@ public class PreparationManager : MonoBehaviour
     /// <param name="_goforward"></param>
     public void ChangeCharacter(bool _goforward)
     {
-        int _newIndex = DataFunc.TravelArr(_goforward, (CharacterData.cD.characters.Length - 1), (int)characterSelected.type);
+        int _newIndex = DataFunc.TravelArr(_goforward, CharacterData.cD.characters.Length, (int)characterSelected.type);
         characterSelected.SetType(_newIndex);
         RefreshScene();
     }

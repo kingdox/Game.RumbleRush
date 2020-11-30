@@ -84,27 +84,48 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void InitLoad()
     {
-        
-        //TODO
+
+   
+
+
+        //Recorres entre los buffs visuales
         for (int i = 0; i < obj_VisualBuffs.Length; i++)
         {
-            //if (i < GameSetup.buffs.Length && GameSetup.buffs[i].counts > 0 )    
-            //{
-            //    //le pone los datos correspondientes
-            //}
-            //else
-            //{
-            //    Image _img = obj_VisualBuffs[i].GetComponent<Image>();
-            //    _img.color = DataFunc.SetColorParam(_img.color, (int)ColorType.a, 0.5f);
-                
-                    
-            //    //Los pone con bajo alpha 
-            //}
+            int finded = -1;
+            //Buscamos para ver si está presente este buff de los selectos
+            for (int x = 0; x < GameSetup.buffs.Length; x++)
+            {
+                //Revisamos si de los buffs escogidos alguno posee este buff visual
+                if ((int)GameSetup.buffs[x].type == i)
+                {
+                    finded = x;
+                    break;
+                }
+            }
 
+            //Si existe le asigna la cantidad correspondiente en su texto
+            Text _child_txt = obj_VisualBuffs[i].transform.GetChild(0).GetComponent<Text>();
+
+            if (finded != -1){
+                _child_txt.text = "+"+GameSetup.buffs[finded].counts.ToString();
+            }
+            else
+            {
+                _child_txt.text = "";
+                //Sino lo pone mas invisible y esconde el texto
+                Image _img = obj_VisualBuffs[i].GetComponent<Image>();
+                _img.color = DataFunc.SetColorParam(_img.color, (int)ColorType.a, 0.25f);
+
+            }
         }
-        
 
     }
+
+
+
+
+
+
 
     /// <summary>
     /// Actualiza la pantalla correspondiente

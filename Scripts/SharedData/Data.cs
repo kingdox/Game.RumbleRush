@@ -14,8 +14,8 @@ public class Data
     [HideInInspector]
     public static Data data = new Data();
 
-    public readonly string savedPath = "saved8.txt";
-    public readonly string version = "v0.1.5";
+    public readonly string savedPath = "saved9.txt";
+    public readonly string version = "v0.2.0";
 
     //Datos especificos
 
@@ -94,8 +94,8 @@ public struct DataFunc
     public static int TravelArr(bool goNext, int indexLength, int _index = 0 )
     {
         int i = goNext
-            ? (_index == indexLength ? 0 : _index + 1)
-            : (_index == 0 ? indexLength : _index - 1)
+            ? (_index == indexLength - 1 ? 0 : _index + 1)
+            : (_index == 0 ? indexLength - 1 : _index - 1)
         ;
         return i;
     }
