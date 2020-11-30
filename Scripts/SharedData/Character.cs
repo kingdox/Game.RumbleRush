@@ -35,12 +35,12 @@ public class CharacterData
         TKey.POW_Hunter,
         TKey.POW_Brutus
     };
-    //-> velocidad de los objetos que vendrán (min 10, max 20?)
+    //-> velocidad de los objetos que vendrán (min 10, )
     public readonly float[] speed = { 20, 10, 15, 15 };
-    //-> vida del personaje  (min 10, max 20)
+    //-> vida del personaje  (min 10)
     public readonly float[] energy = { 15, 20, 10, 15 };
-    //-> fuerza del salto (min 8, max 12)
-    public readonly float[] jump = { 10, 8, 10, 12 };
+    //-> fuerza del salto (min 10)
+    public readonly float[] jump = { 12, 10, 12, 14 };
     //-> Cooldown de la habilidad
     public readonly float[] cooldown = { 30.0f, 60.0f, 25.0f, 40.0f};
     //-> Costo para usarlo
@@ -67,7 +67,8 @@ public struct Character
 
     /// <summary>
     /// Establece el tipo que posee el personaje
-    /// basado en los tipos de personajes que hay
+    /// basado en los tipos de personajes que hay,
+    /// carga al tipo en caso de que no se le indique un indice
     /// </summary>
     public void SetType(int index = -1)
     {

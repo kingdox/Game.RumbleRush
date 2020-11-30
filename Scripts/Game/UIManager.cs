@@ -10,8 +10,13 @@ public class UIManager : MonoBehaviour
     #region Variables
     private static UIManager _;
 
-    [Header("Settings")]
+    [Header("Settings and Player data")]
     public PlayerController playerController;
+    public SpriteRenderer spr_player;
+    public Sprite[] spr_character = new Sprite[4];
+    public Sprite[] spr_weapons = new Sprite[4];
+
+
 
     [Header("Game Screen")]
 
@@ -27,14 +32,10 @@ public class UIManager : MonoBehaviour
 
     //Sides
     // - Left
-    public Image img_sideBG_L;
     public Image img_sideAction_L;
-    [Space]
     // - Right
-    public Image img_sideBG_R;
     public Image img_sideAction_R;
     [Space]
-
 
     // Bottom
     public Image img_energyBar;
@@ -44,16 +45,13 @@ public class UIManager : MonoBehaviour
     public RectTransform rect_cooldownBar;
     [Space]
 
-    public Image img_profileBG;
     public Image img_profileIcon;
 
     [Header("Pause Screen")]
-    public Image img_pauseBG;
     public Text text_pauseScoreMetters;
     public Text text_pauseScoreKills;
 
     [Header("End Screen")]
-    public Image img_endBG;
     public Text text_endScoreMetters;
     public Text text_endScoreKills;
     public Text text_endMoney;
@@ -85,7 +83,11 @@ public class UIManager : MonoBehaviour
     private void InitLoad()
     {
 
-   
+        //Tomamos el sprite en el orden de los CharacterType
+        spr_player.sprite = spr_character[(int)GameSetup.character.type];
+        img_profileIcon.sprite = spr_character[(int)GameSetup.character.type];
+
+        img_sideAction_L.sprite = spr_weapons[(int)GameSetup.character.type];
 
 
         //Recorres entre los buffs visuales
@@ -129,7 +131,7 @@ public class UIManager : MonoBehaviour
 
     /// <summary>
     /// Actualiza la pantalla correspondiente
-    /// quiena ctiva a este señor? TODO
+    /// quien activa a este señor?
     /// </summary>
     private  void ScreenUpdate()
     {
@@ -180,6 +182,9 @@ public class UIManager : MonoBehaviour
 
         img_energyBar.color =  DataFunc.SetColorParam(img_energyBar.color, (int)ColorType.a,lifeUnit);
         img_cooldownBar.color = DataFunc.SetColorParam(img_cooldownBar.color, (int)ColorType.a, cdUnit);
+
+
+        img_profileIcon.transform.rotation = Quaternion.Euler(0, 0, lifeUnit > 0.5f ? 0 : 90);
     }
 
     /// <summary>

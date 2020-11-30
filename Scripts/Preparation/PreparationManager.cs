@@ -19,7 +19,8 @@ public class PreparationManager : MonoBehaviour
 
     [Header("Visual Settings")]
     public PreparationVisual preparationVisual = new PreparationVisual();
-   
+    public Sprite[] spr_character = new Sprite[4];
+
 
     [Header("Preparation info")]
     public Character characterSelected;
@@ -89,15 +90,20 @@ public class PreparationManager : MonoBehaviour
 
         foreach (BuffItem item in buffItems) budget -= item.totalCost;
 
-        text_costMoney.text = budget.ToString() + Translator.GetCurrency();
+        text_costMoney.text = (DataPass.GetSavedData().actualmoney - budget).ToString() + Translator.GetCurrency();
         preparationVisual.SetText(characterSelected);
+
+        preparationVisual.img_character.sprite = spr_character[(int)characterSelected.type];
 
         //Aqui si esto es mayor significa que pueda gastar el dinero
         bool canBuy = budget >= 0;
+
         btn_Buy.enabled = canBuy;
         img_Buy.color = canBuy
             ? Color.green
             : Color.green / 2;
+
+
         text_Buy.color = canBuy
             ? Color.gray
             : Color.green / 2;
