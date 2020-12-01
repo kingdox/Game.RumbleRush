@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+
+    private bool isDead = false;
+
+    private Rigidbody2D rigidbody2D;
+
+    private void Awake()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
     /*
      * TODO
      * 
@@ -25,7 +34,17 @@ public class Monster : MonoBehaviour
      
      */
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player") && !isDead){
+            isDead = true;
+            PlayerManager.player.energyActual -= Random.Range(5, 10);
+            //rigidbody2D.simulated = false;
+            //Desactivale el trigger, no el simulated
+            //Destroy(gameObject);
 
+        }
+    }
 
 
 }

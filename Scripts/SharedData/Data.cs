@@ -36,7 +36,10 @@ public class Data
 
     //-> Usado para saber el rango separador entre las plataformas para no generarse pegado.
     public readonly float platformRangeY = 3.0f;
-    //-> Usado para conocer el rango se
+
+
+    //-> Usado para conocer el rango de espacio entre ambas plataformas
+    //TODO Esta es mas larga en modo dificilm
     public readonly float platformRangeX = 10.0f;
 
     [Header("Floor info")]

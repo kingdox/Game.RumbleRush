@@ -63,6 +63,11 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+        if (Input.GetButtonDown("Weapon"))
+        {
+            Debug.Log("Weapon Pressed");
+        }
+
     }
     /// <summary>
     /// Realiza el salto

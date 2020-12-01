@@ -39,7 +39,7 @@ public class Translator
         "Aumenta la velocida gradualmente.",
         "Reestablece la energía poco a poco.",
         "Permite dar saltos dobles.",
-        "Atrae más monstruos más de lo normal.",
+        "Atrae más monstruos.",
 
         // Buff ???
        "Energía",
