@@ -15,21 +15,30 @@ public class Data
     public static Data data = new Data();
 
     public readonly string savedPath = "saved9.txt";
-    public readonly string version = "v0.2.0";
+    public readonly string version = "v0.3.5";
 
     //Datos especificos
 
     /// <summary>Valor de 1 unidad de metro</summary>
     public readonly float metter = 10;
+    
 
-
+    [Header("Monster")]
     // -> Valor de cada monstruo eliminado
     public readonly int monsterValue = 5;
+    public readonly int monsterSpeed = 3;
+    public readonly int[] spawnTimeRange_floor = { 3, 6 };
+    public readonly int[] spawnTimeRange_aero = { 5, 10 };
+
+    public readonly int[] monsterDamageRange_floor = { 2, 6 };
+    public readonly int[] monsterDamageRange_aero = { 1, 4 };
+
     // -> Cantidad maxima de un tipod e buff
     public readonly int maxBuffCount = 20;
 
     [Header("Player")]
     public readonly float lifeReductor = 10;
+    public readonly float playerInmuneTimeCountLimit;
 
     [Header("Platform info")]
     public readonly int limitPlatformsInGame = 7;
@@ -39,8 +48,12 @@ public class Data
 
 
     //-> Usado para conocer el rango de espacio entre ambas plataformas
-    //TODO Esta es mas larga en modo dificilm
     public readonly float platformRangeX = 10.0f;
+
+    [Header("Modo dificil")]
+    // --> la suma extra aplicada a la pos de plataformas
+    public readonly float hardMode_platformRangeXPlus = 5f;
+    public readonly int[] hardMode_spawnTimeRange = { 1, 4 };
 
     [Header("Floor info")]
     public readonly int limitBaseFloorInGame = 3;

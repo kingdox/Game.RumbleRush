@@ -27,10 +27,15 @@ public class GameSetup: MonoBehaviour
     public static Buff[] buffs;
     public static float easyMetters;
 
-
+    //con el que sabremos si es modo dificil o facil
+    public static bool hardMode = false;
+    
     #endregion
     #region EVENT
-  
+    private void Update()
+    {
+        
+    }
     #endregion
     #region Methods
     /// <summary>

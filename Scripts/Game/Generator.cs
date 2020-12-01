@@ -18,17 +18,10 @@ public class Generator : MonoBehaviour
      *  2- Generar las plataformas aereas y, dependiendo del rango interno 
      *  conocer el clamping para no entrar
      *
-     *  3- Dependiendo de la distancia que este recorra, 
-     *  cambiar las plataformas "faciles por las dificiles"
-     *  
      *  //Notas
      *  Los monstruos, monedas y botiquines se generan con las plataformas, 
      *  de manera que no hay que preocuparse ya que estas estarán ahí
      *
-     *
-     *  //Extra
-     *   Si hay tiempo, deberías de hacer que las plataformas sean dinamicas en su escala, 
-     *   de manera que permita varíar dentro de ciertos parametros, así hay mayor diferencia
      */
 
     [Header("Platform Settings")]
@@ -91,7 +84,9 @@ public class Generator : MonoBehaviour
     /// </summary>
     private void SpawnFloor()
     {
-        float X = lastFloor_size.x + lastFloor_position.x + Random.Range(0,Data.data.floorRangeX);
+        float _hardRange_X = GameSetup.hardMode ? Data.data.hardMode_platformRangeXPlus : 0f;
+
+        float X = lastFloor_size.x + lastFloor_position.x + Random.Range(0,Data.data.floorRangeX) + _hardRange_X;
         Vector2 _newPos = new Vector2(X, 0);
 
         GameObject _obj = Instantiate(
@@ -108,16 +103,18 @@ public class Generator : MonoBehaviour
     
 
 
-    /// <summary>TODO
+    /// <summary>
     /// Crea una plataforma con unos margenes de tamaño y en una posición aleatoria
     /// dentro de otros parametros con respecto a la camara y la ultima plataforma
     /// </summary>
     private void SpawnPlatform()
     {
+        float _hardRange_X = GameSetup.hardMode ? Data.data.hardMode_platformRangeXPlus : 0f;
+
         //Temporal
 
         float _minX = lastPlatform_size.x / 2;
-        float _maxX = Mathf.Clamp(Data.data.platformRangeX, _minX, _minX + Data.data.platformRangeX);
+        float _maxX = _hardRange_X + Mathf.Clamp(Data.data.platformRangeX, _minX, _minX + Data.data.platformRangeX);
 
         //Sacamos el rango de distancia entre la ultima plataforma y la que se va a generar
         float _randomX = Random.Range(_minX, _maxX) + lastPlatform_position.x; 

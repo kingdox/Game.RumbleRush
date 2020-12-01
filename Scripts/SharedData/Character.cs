@@ -38,11 +38,11 @@ public class CharacterData
     //-> velocidad de los objetos que vendrán (min 10, )
     public readonly float[] speed = { 20, 10, 15, 15 };
     //-> vida del personaje  (min 10)
-    public readonly float[] energy = { 15, 20, 10, 15 };
+    public readonly float[] energy = { 25, 30, 20, 25 };
     //-> fuerza del salto (min 10)
     public readonly float[] jump = { 12, 10, 12, 14 };
     //-> Cooldown de la habilidad
-    public readonly float[] cooldown = { 30.0f, 60.0f, 25.0f, 40.0f};
+    public readonly float[] cooldown = { 10.0f, 15.0f, 5.0f, 8.0f};
     //-> Costo para usarlo
     public readonly int[] cost = { 0, 150, 200, 300 };
 
