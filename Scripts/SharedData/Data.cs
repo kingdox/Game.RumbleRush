@@ -34,7 +34,7 @@ public class Data
     public readonly int[] monsterDamageRange_aero = { 1, 4 };
 
     // -> Cantidad maxima de un tipod e buff
-    public readonly int maxBuffCount = 20;
+    public readonly int maxBuffCount = 10;
 
     [Header("Player")]
     public readonly float lifeReductor = 10;

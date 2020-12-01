@@ -80,8 +80,8 @@ public class Monster : MonoBehaviour
                 // acerca su eje Y a el player
                 // si el jugador está encima entonces será negativa, sino positiva,
                 //esta luego impulsará un poco pero no al completo...
-                float direction = isUpper ? -1 : 1;
-                _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed) * direction;
+                float direction = isUpper ? -1 : 0;
+                _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed / 2) * direction;
 
             }
             else
@@ -118,21 +118,3 @@ public class Monster : MonoBehaviour
     }
     #endregion
 }
-
-/*
-    * TODO
-    * 
-    * Este script contempla:
-    * 
-    *  - Que se mueva hacia adelante en un rango con velocidad aleatoria
-    *  - Que dependiendo del tipo de monstruo aplique o no ciertas cosas
-    *  - Que se destruya si hace contacto con player
-    *  - Que se destruya si sale de cierto rango o si alcanza x posicion
-    *  - que pueda tener colision con el floor, pero no con las plataformas
-    *  
-    *  
-    *  Propuesta: 
-    *
-    *  Cuando muere se cae hacía el infinito, desactivandose su collider
-    *   
-    */

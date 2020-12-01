@@ -180,7 +180,7 @@ public class UIManager : MonoBehaviour
         rect_energyBar.anchorMax = new Vector2(lifeUnit, 1);
         rect_cooldownBar.anchorMax = new Vector2(cdUnit, 1);
 
-        img_energyBar.color =  DataFunc.SetColorParam(img_energyBar.color, (int)ColorType.a,lifeUnit);
+        img_energyBar.color =  DataFunc.SetColorParam(img_energyBar.color, (int)ColorType.a, Mathf.Clamp(lifeUnit,0.25f,1));
         img_cooldownBar.color = DataFunc.SetColorParam(img_cooldownBar.color, (int)ColorType.a, cdUnit);
 
 
