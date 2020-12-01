@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour
 
     public MonsterType type;
 
+    private float cooldownMovement_Y;
+
     #endregion
     #region Events
     private void Awake()
@@ -69,25 +71,33 @@ public class Monster : MonoBehaviour
 
         //En caso de no haber pasado al player todavía lo intentará seguir
 
-        if (type == MonsterType.Monster_Aero)
+        if (type == MonsterType.Monster_Aero )
         {
-            //tenemos el player fisico
-            Vector2 _playerPos = PlayerManager.player.obj_player.transform.position;
 
-            if (transform.position.x > _playerPos.x){
+            if (cooldownMovement_Y > 0.25f){
+                //tenemos el player fisico
+                Vector2 _playerPos = PlayerManager.player.obj_player.transform.position;
 
-                bool isUpper = transform.position.y > _playerPos.y;
-                // acerca su eje Y a el player
-                // si el jugador está encima entonces será negativa, sino positiva,
-                //esta luego impulsará un poco pero no al completo...
-                float direction = isUpper ? -1 : 0;
-                _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed / 2) * direction;
+                if (transform.position.x > _playerPos.x){
 
+                    bool isUpper = transform.position.y > _playerPos.y;
+                    // acerca su eje Y a el player
+                    // si el jugador está encima entonces será negativa, sino positiva,
+                    //esta luego impulsará un poco pero no al completo...
+                    float direction = isUpper ? -1 : 0;
+                    _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed / 2) * direction;
+
+                }
+                else
+                {
+                    _tempVelocity.y/= 2;
+                }
             }
             else
             {
-                _tempVelocity.y/= 2;
+                cooldownMovement_Y += Time.deltaTime;
             }
+
         }
 
 

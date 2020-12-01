@@ -37,6 +37,9 @@ public class PlayerManager : MonoBehaviour
 
     //private Character player;
 
+    //Escudos que le permiten evitar golpes de monstruos por cierto tiempo
+    public int shields = 0;
+
     [Header("Info")]
     public float mettersActual;
     public int killsActual;
@@ -86,6 +89,27 @@ public class PlayerManager : MonoBehaviour
         player.energyActual = player.energyMax;
         player.cooldownMax = GameSetup.character.cooldown;
 
+
+        //Aprovechamos de colocar las adiciones con los buff...
+        for (int x = 0; x < GameSetup.buffs.Length; x++)
+        {
+            switch (GameSetup.buffs[x].type)
+            {
+                case BuffType.Energy:
+                    player.energyActual += GameSetup.buffs[x].counts;
+                    break;
+                case BuffType.Speed:
+                    player.speedActual += GameSetup.buffs[x].counts;
+                    break;
+                case BuffType.Shield:
+                    player.shields += GameSetup.buffs[x].counts;
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
     }
 
 
@@ -122,9 +146,11 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     public void RemoveLife(MonsterType type){
-
         if (inmuneTimeCount < Data.data.playerInmuneTimeCountLimit) return;
         inmuneTimeCount = 0;
+
+        if (shields-- > 0) return;
+
 
         int[] range = {};
 
