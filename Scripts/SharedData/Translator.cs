@@ -36,7 +36,7 @@ public class Translator
         "Barbaro",
 
         // PowDescription
-        "Aumenta la velocida gradualmente.",
+        "Aumenta la velocidad gradualmente.",
         "Reestablece la energía poco a poco.",
         "Permite dar saltos dobles.",
         "Atrae más monstruos.",

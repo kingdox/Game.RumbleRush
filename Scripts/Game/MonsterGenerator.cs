@@ -43,8 +43,8 @@ public class MonsterGenerator : MonoBehaviour
         {
             cooldownCount_floor = 0;
             int[] range = GameSetup.hardMode ? Data.data.hardMode_spawnTimeRange : Data.data.spawnTimeRange_floor;
-            spawnCooldown_floor = Random.Range(range[0], range[1]);
 
+            spawnCooldown_floor = PowerManager.PlayerSpawnsMonsterUpdate(Random.Range(range[0], range[1]));
             SpawnMonster_Floor(Vector2.zero);
         }
 
@@ -52,8 +52,8 @@ public class MonsterGenerator : MonoBehaviour
         {
             cooldownCount_aero = 0;
             int[] range = GameSetup.hardMode ? Data.data.hardMode_spawnTimeRange : Data.data.spawnTimeRange_aero;
-            spawnCooldown_aero = Random.Range(range[0], range[1]);
 
+            spawnCooldown_aero = PowerManager.PlayerSpawnsMonsterUpdate(Random.Range(range[0], range[1]));
             SpawnMonster_Aero(Vector2.zero);
 
         }

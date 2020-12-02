@@ -24,7 +24,10 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager player;
    
     [Header("ActualStats")]
+    //Aquí poseeremos la speed base sin añadidos
+    public float speedBase;
     public float speedActual;
+
 
     public float jumpActual;
 
@@ -37,10 +40,14 @@ public class PlayerManager : MonoBehaviour
 
     //private Character player;
 
+    //Escudos que le permiten evitar golpes de monstruos por cierto tiempo
+    public int shields = 0;
+
     [Header("Info")]
     public float mettersActual;
     public int killsActual;
-    
+
+    //TODO public int collectedMoney;
 
     [Header("Settings")]
     public GameObject obj_player;
@@ -86,6 +93,31 @@ public class PlayerManager : MonoBehaviour
         player.energyActual = player.energyMax;
         player.cooldownMax = GameSetup.character.cooldown;
 
+
+        //Aprovechamos de colocar las adiciones con los buff...
+        for (int x = 0; x < GameSetup.buffs.Length; x++)
+        {
+            switch (GameSetup.buffs[x].type)
+            {
+                case BuffType.Energy:
+                    player.energyActual += GameSetup.buffs[x].counts;
+                    break;
+                case BuffType.Speed:
+                    player.speedActual += GameSetup.buffs[x].counts;
+                    break;
+                case BuffType.Shield:
+                    player.shields += GameSetup.buffs[x].counts;
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        //Establecemos la base de velocidad
+        player.speedBase = player.speedActual;
+
+
     }
 
 
@@ -94,12 +126,15 @@ public class PlayerManager : MonoBehaviour
     /// Actualiza el estado de la barra de energía
     /// para que esta se reduzca poco a poco a medida que el jugador juega
     /// también aumenta los metros recorridos...
+    /// revisa ciertos estados que pueden actualizarse
     /// </summary>
     private void UpdateRun()
     {
         inmuneTimeCount += Time.deltaTime;
-        energyActual -= Time.deltaTime / Data.data.lifeReductor;
-        
+        energyActual = Mathf.Clamp(PowerManager.PlayerEnergyUpdate(),0,energyMax);
+        //energyActual -= Time.deltaTime / Data.data.lifeReductor;
+        speedActual = PowerManager.PlayerSpeedUpdate();
+
         mettersActual = (float)System.Math.Round(obj_player.transform.position.x / Data.data.metter ,1);
         cooldownActual = Mathf.Clamp(cooldownActual + Time.deltaTime , 0, cooldownMax);
 
@@ -122,9 +157,11 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     public void RemoveLife(MonsterType type){
-
         if (inmuneTimeCount < Data.data.playerInmuneTimeCountLimit) return;
         inmuneTimeCount = 0;
+
+        if (shields-- > 0) return;
+
 
         int[] range = {};
 

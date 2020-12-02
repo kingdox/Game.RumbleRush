@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckPlayerJump()
     {
-        if (rigidBody.velocity.y == 0 && falling) canJump = true;
+        if (rigidBody.velocity.y == 0 && falling) canJump = PowerManager.PlayerJumpUpdate(canJump,true);
         falling = rigidBody.velocity.y < 0;
     }
     /// <summary>
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
             rigidBody.AddForce(Vector2.up * GameSetup.character.jump, ForceMode2D.Impulse);
 
-            canJump = false;
+            canJump = PowerManager.PlayerJumpUpdate(canJump); ;
         }
 
     }
