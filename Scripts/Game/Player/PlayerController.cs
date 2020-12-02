@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     // referencia del rigidBody
     private Rigidbody2D rigidBody;
 
+    //La velocidad mas alta que has conseguido antes de chocar con algún monstruo
+    public float higherVelocity_X;
+
     [Header("Jump Settings")]
     public bool canJump = false;
     public bool falling = false;
@@ -98,6 +101,8 @@ public class PlayerController : MonoBehaviour
         //Asigna la velocidad 
         rigidBody.velocity = _tempVelocity;
 
+        //Aumento en caso de que sea mayor
+        higherVelocity_X = _tempVelocity.x > higherVelocity_X ? _tempVelocity.x : higherVelocity_X;
     }
     #endregion
 }

@@ -21,11 +21,20 @@ public class Data
 
     /// <summary>Valor de 1 unidad de metro</summary>
     public readonly float metter = 10;
-    
+
+
+    [Header("Items inGame")]
+    //valores improtantes de los objetos en juego
+    public readonly int[] coinRangeValue = { 1, 20 };
+    public readonly int[] healRangeValue = { 2, 4 };
+
 
     [Header("Monster")]
+    public readonly int monsterEasyMettersValue = 5;
     // -> Valor de cada monstruo eliminado
-    public readonly int monsterValue = 5;
+    public readonly int monsterValue_floor = 5;
+    public readonly int monsterValue_aero = 30;
+
     public readonly int monsterSpeed = 3;
     public readonly int[] spawnTimeRange_floor = { 3, 6 };
     public readonly int[] spawnTimeRange_aero = { 5, 10 };
@@ -65,7 +74,8 @@ public class Data
         MenuScene,
         InstructionScene,
         PreparationScene,
-        GameScene
+        GameScene,
+        CutScene
     }
 }
 
@@ -158,6 +168,17 @@ public struct DataFunc
         return newColor;
     }
 
+    /// <summary>
+    /// Obtienes el valor del rango dado 
+    /// </summary>
+    /// <param name="range"></param>
+    public static float Range(float[] range) => Random.Range(range[0], range[1]);
+
+    /// <summary>
+    /// Obtienes el valor del rango dado 
+    /// </summary>
+    /// <param name="range"></param>
+    public static int Range(int[] range) => Random.Range(range[0], range[1]);
 
     /// <summary>
     /// Revisa el valor y en caso de poseer -1 que, en este caso

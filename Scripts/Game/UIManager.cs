@@ -13,10 +13,14 @@ public class UIManager : MonoBehaviour
     [Header("Settings and Player data")]
     public PlayerController playerController;
     public SpriteRenderer spr_player;
+    // Arma del jugador
+    public SpriteRenderer spr_playerWeapon;
+
     public Sprite[] spr_character = new Sprite[4];
     public Sprite[] spr_weapons = new Sprite[4];
 
 
+    [Space]
 
     [Header("Game Screen")]
 
@@ -82,12 +86,13 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void InitLoad()
     {
-
+        int _charIndex = (int)GameSetup.character.type;
         //Tomamos el sprite en el orden de los CharacterType
-        spr_player.sprite = spr_character[(int)GameSetup.character.type];
-        img_profileIcon.sprite = spr_character[(int)GameSetup.character.type];
+        spr_player.sprite = spr_character[_charIndex];
+        spr_playerWeapon.sprite = spr_weapons[_charIndex];
+        img_profileIcon.sprite = spr_character[_charIndex];
 
-        img_sideAction_L.sprite = spr_weapons[(int)GameSetup.character.type];
+        img_sideAction_L.sprite = spr_weapons[_charIndex];
 
 
         //Recorres entre los buffs visuales

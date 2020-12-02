@@ -145,10 +145,12 @@ public class GameManager : MonoBehaviour
         
         Debug.Log("GG, Game Over");
         status = GameStatus.GameOver;
-        CheckScreens();
 
         //Tomamos los datos guardados para poder editarlos
         SavedData newSavedData = DataPass.GetSavedData();
+
+        //Añadimos el dinero obtenido
+        newSavedData.actualmoney += PlayerManager.player.collectedMoney;
 
         newSavedData.lastMetersReached = PlayerManager.player.mettersActual;
         newSavedData.lastMonstersKilled = PlayerManager.player.killsActual;
@@ -161,6 +163,9 @@ public class GameManager : MonoBehaviour
         //Guardamos los datos
         DataPass.SaveLoadFile(true);
 
+
+        //Actualiza con los nuevos datos
+        CheckScreens();
     }
 
     #endregion

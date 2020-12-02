@@ -19,7 +19,7 @@ public class Generator : MonoBehaviour
      *  conocer el clamping para no entrar
      *
      *  //Notas
-     *  Los monstruos, monedas y botiquines se generan con las plataformas, 
+     *  monedas y botiquines se generan con las plataformas, 
      *  de manera que no hay que preocuparse ya que estas estarán ahí
      *
      */
@@ -98,6 +98,10 @@ public class Generator : MonoBehaviour
 
         lastFloor_position = _obj.transform.position;
         lastFloor_size = _obj.transform.localScale;
+
+
+        //Generamos algo en el suelo
+        ItemGenerator.Generate(lastFloor_size, lastFloor_position);
     }
 
     
@@ -158,6 +162,10 @@ public class Generator : MonoBehaviour
         //Les asignamos los valores a los last...
         lastPlatform_size = _obj.transform.localScale;
         lastPlatform_position = _newPos;
+
+
+        //Generamos algo
+        ItemGenerator.Generate(lastPlatform_size, lastPlatform_position);
     }
 
 

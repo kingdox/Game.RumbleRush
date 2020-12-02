@@ -49,9 +49,14 @@ public class Monster : MonoBehaviour
         if (tr.CompareTag("Player") && !isDead && GameManager.status == GameStatus.InGame)
         {   
             isDead = true;
+            PlayerManager.player.playerController.higherVelocity_X /= 2;
+
             PlayerManager.player.RemoveLife(type);
             PlayerManager.player.ResetPowerBar();
-            PlayerManager.player.rigi2D_player.velocity = new Vector2(0, PlayerManager.player.rigi2D_player.velocity.y);
+            PlayerManager.player.rigi2D_player.velocity = new Vector2(
+                PlayerManager.player.playerController.higherVelocity_X,
+                PlayerManager.player.rigi2D_player.velocity.y
+            );
             boxCollider2D.enabled = false;
             rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         }

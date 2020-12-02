@@ -47,12 +47,12 @@ public class PlayerManager : MonoBehaviour
     public float mettersActual;
     public int killsActual;
 
-    //TODO public int collectedMoney;
+    public int collectedMoney;
 
     [Header("Settings")]
     public GameObject obj_player;
     public Rigidbody2D rigi2D_player;
-
+    public PlayerController playerController;
 
     public float inmuneTimeCount ;
 
@@ -131,7 +131,7 @@ public class PlayerManager : MonoBehaviour
     private void UpdateRun()
     {
         inmuneTimeCount += Time.deltaTime;
-        energyActual = Mathf.Clamp(PowerManager.PlayerEnergyUpdate(),0,energyMax);
+        energyActual = Mathf.Clamp(PowerManager.PlayerEnergyUpdate(),-1,energyMax);
         //energyActual -= Time.deltaTime / Data.data.lifeReductor;
         speedActual = PowerManager.PlayerSpeedUpdate();
 
@@ -175,7 +175,46 @@ public class PlayerManager : MonoBehaviour
                 break;
         }
 
-        player.energyActual -= Random.Range(range[0], range[1]);
+        player.energyActual -= DataFunc.Range(range);
+    }
+
+
+    /// <summary>
+    /// Si coges botiquín te curas
+    /// Aleatoriamente entre unos parametros
+    /// </summary>
+    public void HealLife(){
+        float heal = DataFunc.Range(Data.data.healRangeValue);
+        energyActual = Mathf.Clamp(energyActual + heal, 0, energyMax);
+    }
+    /// <summary>
+    /// Si coges una moneda en mapa, aleatoriamente generará
+    /// entre ciertos rangos una cantidad de valor y se añadirá a
+    /// el dinero recogido de esta partida
+    /// </summary>
+    public void CollectCoin(){
+        int count = DataFunc.Range(Data.data.coinRangeValue);
+        collectedMoney += count;
+    }
+    /// <summary>
+    /// Dependiendo del mosntruo que hayamos eliminado,
+    /// añadiremos en el collectedMoney el valor correspondiente
+    /// </summary>
+    /// <param name="type"></param>
+    public void CollectMonsterValue(MonsterType type){
+        int count = 0;
+
+        switch (type)
+        {
+            case MonsterType.Monster_Floor:
+                count = Data.data.monsterValue_floor;
+                break;
+            case MonsterType.Monster_Aero:
+                count = Data.data.monsterValue_aero;
+                break;
+        }
+
+        collectedMoney += count;
     }
 
 

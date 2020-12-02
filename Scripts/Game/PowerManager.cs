@@ -8,10 +8,10 @@ public class PowerManager : MonoBehaviour {
     //Estos son los beneficios de los poderes de cada uno
     [Header("Powers")]
     // cantidad que aumenta de velocidad al monje
-    public float monk_buffSpeed = 0.01f;
+    public float monk_buffSpeed = 0.005f;
 
     // cantidad que cura al paladín, es un int... hacer un cooldown mejor?
-    public float paladin_heal = 0f;
+    public float paladin_heal = 25f;
 
     // comprobación de si puedes volver a saltar
     public bool hunter_canReJump = true;
@@ -68,7 +68,7 @@ public class PowerManager : MonoBehaviour {
 
         //Revisamos si el poder esta disponible y si es tipo paladin
         if (_.isPoweOn && GameSetup.character.type == CharacterType.Paladin) {
-            newEnergyActual += Time.deltaTime / Data.data.lifeReductor;
+            newEnergyActual += Time.deltaTime / _.paladin_heal ;
             //Debug.Log($"{newEnergyActual} de {PlayerManager.player.energyActual}");
         } else {
             newEnergyActual -= Time.deltaTime / Data.data.lifeReductor;

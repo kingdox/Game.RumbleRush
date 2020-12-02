@@ -69,7 +69,7 @@ public class GameSetup: MonoBehaviour
         easyMetters = (
             DataPass.GetSavedData().lastMetersReached
             + DataPass.GetSavedData().lastMoneySpent
-            + DataPass.GetSavedData().lastMonstersKilled * Data.data.monsterValue
+            + DataPass.GetSavedData().lastMonstersKilled * Data.data.monsterEasyMettersValue
             ) / Random.Range(1, 2.5f);
 
         Debug.Log($"Poseerás {easyMetters} Metros faciles :)");
