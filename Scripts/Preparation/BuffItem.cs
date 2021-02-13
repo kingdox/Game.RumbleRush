@@ -86,7 +86,7 @@ public class BuffItem : MonoBehaviour
     /// <summary>
     /// Actualiza un texto de tipo monetario
     /// </summary>
-    private void SetCostText(Text txt , int val) => txt.text = val.ToString() + Translator.GetCurrency();
+    private void SetCostText(Text txt , int val) => txt.text = val.ToString();
 
     /// <summary>
     /// Establecemos el buff con sus valores

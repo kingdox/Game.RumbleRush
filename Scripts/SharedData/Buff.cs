@@ -29,7 +29,7 @@ public class BuffData
     };
 
     // -> Donde sabremos los precios de los buff
-    public readonly int[] cost = { 25, 10, 35 };
+    public readonly int[] cost = { 35, 20, 30 };
 
 }
 

@@ -22469,6 +22469,12 @@ TextureImporter:
   - first:
       213: -5798662885849424581
     second: altas personajes, hud e iconos_7488
+  - first:
+      213: -5311993420487458141
+    second: Atlas_Mini_0
+  - first:
+      213: -5630125152649251708
+    second: Atlas_Mini_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -22566,7 +22572,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Atlas_Mini_0
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 1392
+        width: 1266
+        height: 1244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a202a2d0220846b0800000000000000
+      internalID: -5311993420487458141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_Mini_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 721
+        width: 2881
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484795bd007cdd1b0800000000000000
+      internalID: -5630125152649251708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -32,14 +32,16 @@ public class PreparationManager : MonoBehaviour
     #region ###### EVENT
     private void Start()
     {
-        text_actualMoney.text = Translator.Trns(TKey.Money) + DataPass.GetSavedData().actualmoney.ToString() + Translator.GetCurrency();
+        text_actualMoney.text = DataPass.GetSavedData().actualmoney.ToString();
         characterSelected.SetType();
         RefreshScene();
+
+        MusicSystem.SetVolume(1);
+        MusicSystem.CheckMusic();
     }
 
     private void Update()
     {
-        //TODO buscar luego una forma mejor que hacer una busqueda.....
         CheckBuffItems(); 
     }
     #endregion
@@ -63,7 +65,10 @@ public class PreparationManager : MonoBehaviour
             }
         }
         //si nesecita cambios entonces:
-        if (needChanges) RefreshScene();
+        if (needChanges) {
+            ButtonPressed();
+            RefreshScene();
+        };
     }
 
     /// <summary>
@@ -84,13 +89,14 @@ public class PreparationManager : MonoBehaviour
     /// </summary>
     private void RefreshScene()
     {
+
         //tenemos el dinero que posee el jugador y con esta la reduciremos para saber el resultado
         budget = DataPass.GetSavedData().actualmoney;
         budget -= characterSelected.cost;
 
         foreach (BuffItem item in buffItems) budget -= item.totalCost;
 
-        text_costMoney.text = (DataPass.GetSavedData().actualmoney - budget).ToString() + Translator.GetCurrency();
+        text_costMoney.text = (DataPass.GetSavedData().actualmoney - budget).ToString();
         preparationVisual.SetText(characterSelected);
 
         preparationVisual.img_character.sprite = spr_character[(int)characterSelected.type];
@@ -99,14 +105,11 @@ public class PreparationManager : MonoBehaviour
         bool canBuy = budget >= 0;
 
         btn_Buy.enabled = canBuy;
-        img_Buy.color = canBuy
-            ? Color.green
-            : Color.green / 2;
 
+        img_Buy.color = canBuy ? Color.white : DataFunc.SetColorParam(Color.white / 2, (int)ColorType.a);
 
-        text_Buy.color = canBuy
-            ? Color.gray
-            : Color.green / 2;
+        text_Buy.color = canBuy ? Color.black : Color.red;
+        
     }
 
 
@@ -118,6 +121,8 @@ public class PreparationManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        MusicSystem.ReproduceSound(MusicSystem.SfxType.Coin);
+
         // -> Conservamos la info por que la vamos a alterar
         SavedData _saved = DataPass.GetSavedData();
 
@@ -162,6 +167,11 @@ public class PreparationManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Hace el sonido de un boton
+    /// </summary>
+    public void ButtonPressed() => MusicSystem.ButtonSound();
+
+    /// <summary>
     ///  Cambiamos a la escena indicada
     /// </summary>
     /// <param name="i"></param>
@@ -190,7 +200,7 @@ public struct PreparationVisual
     public void SetText(Character _c)
     {
         //int i = (int)_c.type;
-        text_cost.text = _c.cost.ToString() + Translator.GetCurrency();
+        text_cost.text = _c.cost.ToString();
         text_character.text = Translator.ClampKey(_c.keyName, CharacterData.cD.charKeys); 
         text_energy.text = _c.energy.ToString();
         text_speed.text = _c.speed.ToString();

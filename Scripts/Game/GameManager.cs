@@ -21,8 +21,12 @@ public class GameManager : MonoBehaviour
     private Camera cam;
     private float camHeight;
     private float camWidth;
-
     private static GameManager _;
+    public Light lightScene;
+    [Space]
+
+    //public Animator anim_camera;
+
 
     [Header("GameManager info")]
     public GameSetup gameSetup;
@@ -54,6 +58,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 1;
+
         status = GameStatus.Init;
         UpdateStatus();
 
@@ -63,6 +69,13 @@ public class GameManager : MonoBehaviour
         gameSetup.Debug_Visuals();
         // Debug
 
+
+        //Revisamos la musica
+        MusicSystem.SetVolume(0.25f);
+        MusicSystem.CheckMusic();
+        
+        StartCoroutine(SetFarCamera());
+
     }
     void Update()
     {
@@ -71,16 +84,67 @@ public class GameManager : MonoBehaviour
             Debug.Log("Run Game ? ");
             status = GameStatus.InGame;
         }
-        else
+        else if (status != GameStatus.GameOver)
         {
-            UpdateStatus();
-
+           UpdateStatus();
         }
        
-           
     }
     #endregion
     #region Methods
+
+
+    /// <summary>
+    /// Esta se llamará así mismo hasta que la escena haya terminado de mostrarse
+    /// 0, 35, 50
+    /// Luces, camara, accion !
+    /// donde isStart determina si vamos hacia adelante o hacia atrás
+    /// donde moment dice el estado actual de la camara
+    /// </summary>
+    /// <param name="waitTime"></param>
+    /// <returns></returns>
+    private IEnumerator SetFarCamera( bool isStart = true)
+    {
+        float[] fars = { 10 , 35, 50 };
+        //si esta iniciando lo vamos elevando hasta el tope de longitud, si esta terminando lo llevamos hasta -1
+        int index = 1;
+
+        for (int x = 0; x < fars.Length; x++)
+        {
+            //Conseguimos el indice actual
+            if (fars[x] == cam.farClipPlane) index = x;
+        }
+
+        //Pasados los 6 segundos
+        yield return new WaitForSeconds(0.6f);
+
+        index += isStart ? 1 : -1;
+
+        if (DataFunc.IsOnBoundsArr(index,fars.Length))
+        {
+            if (isStart)
+            {
+                float percent = DataFunc.KnowPercentOfMax(index, fars.Length) / 100;
+                Debug.Log($"percent {percent}");
+                MusicSystem.SetVolume(percent);
+            }
+
+            lightScene.intensity = DataFunc.KnowPercentOfMax(index+1,fars.Length) / 100;
+            cam.farClipPlane = fars[index];
+            StartCoroutine(SetFarCamera(isStart));
+        }
+        else
+        {
+            if (isStart)
+            {
+                MusicSystem.SetVolume(1);
+            }
+        }   
+
+    }
+
+
+
 
     /// <summary>
     /// Actualizamos los efectos dependientes de los estados referentes al juego 
@@ -96,8 +160,13 @@ public class GameManager : MonoBehaviour
     /// <param name="condition"></param>
     public static void OnOffPause(bool condition) {
 
-        status = condition ? GameStatus.Paused : GameStatus.InGame;
-        CheckScreens();
+        if (status != GameStatus.GameOver){
+
+            MusicSystem.SetVolume(condition ? 0.25f : 1);
+
+            status = condition ? GameStatus.Paused : GameStatus.InGame;
+            CheckScreens();
+        }
     }
 
     /// <summary>
@@ -111,6 +180,11 @@ public class GameManager : MonoBehaviour
 
         UIManager.LoadScreen();
     }
+
+    /// <summary>
+    /// Hace el sonido de un boton
+    /// </summary>
+    public void ButtonPressed() => MusicSystem.ButtonSound();
 
     /// <summary>
     /// Cambia a la escena establecida
@@ -129,6 +203,14 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
+    /// Corremos al animación del screenshake
+    /// </summary>
+    //public static void ScreenShake()
+    //{
+    //    _.anim_camera.Play("Camera");
+
+    //}
+    /// <summary>
     /// Asigna la camara y conocemos los parametros
     /// de ancho y alto 
     /// </summary>
@@ -145,6 +227,7 @@ public class GameManager : MonoBehaviour
         
         Debug.Log("GG, Game Over");
         status = GameStatus.GameOver;
+        UIManager.InGameUpdate();
 
         //Tomamos los datos guardados para poder editarlos
         SavedData newSavedData = DataPass.GetSavedData();
@@ -165,8 +248,39 @@ public class GameManager : MonoBehaviour
 
 
         //Actualiza con los nuevos datos
-        CheckScreens();
+
+
+        _.StartCoroutine(_.GameEnd());
+
     }
+
+
+    /// <summary>
+    /// Pasados los sgundos establecidos se muestra la pantalla de game End...
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    private IEnumerator GameEnd()
+    {
+        //Retrocedemos la camara para ocultar la escena
+        //el tiempo que espero , aprox 5 sec
+        MusicSystem.SetVolume(0.75f);
+        yield return new WaitForSeconds(5);
+        StartCoroutine(SetFarCamera(false));
+
+        MusicSystem.SetVolume(0.25f);
+
+
+        yield return new WaitForSeconds(0.6f * 3);
+        Time.timeScale = 0;
+        CheckScreens();
+
+        //Reproducimos la musica final
+        MusicSystem.PlayThisMusic(MusicSystem.MusicPath.RR_End);
+        MusicSystem.SetVolume(1);
+
+    }
+
 
     #endregion
 }

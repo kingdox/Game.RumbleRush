@@ -9,14 +9,27 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     #region ####################### Variables
+    private bool loaded = false;
 
     public Text text_recordMeters;
     public Text text_recordKills;
     public Text text_ActualMoney;
+    [Space]
+    public Image img_music;
+    [Space]
+    public Text version;
 
-    private bool loaded = false;
     #endregion
     #region ####################### EVENT
+    private void Start()
+    {
+        version.text = Data.data.version + " ";
+
+        MusicSystem.SetVolume(1);
+        MusicSystem.CheckMusic();
+        img_music.color = DataFunc.SetColorParam(img_music.color, (int)ColorType.a, MusicSystem.CanSound() ? 1 : 0.5f);
+
+    }
     private void Update()
     {
         LoadInformation();
@@ -33,9 +46,9 @@ public class MenuManager : MonoBehaviour
         if (DataPass._.isReady && !loaded)
         {
             loaded = true;
-            text_recordMeters.text = Translator.Trns(TKey.Metters) + DataPass.GetSavedData().recordMetersReached.ToString() + Translator.Trns(TKey.SIGN_Metters);
-            text_recordKills.text = Translator.Trns(TKey.Monsters) + DataPass.GetSavedData().recordMonstersKilled.ToString();
-            text_ActualMoney.text = Translator.Trns(TKey.Money) + DataPass.GetSavedData().actualmoney.ToString() + Translator.Trns(TKey.SIGN_Money);
+            text_recordMeters.text = DataPass.GetSavedData().recordMetersReached.ToString() + Translator.Trns(TKey.SIGN_Metters);
+            text_recordKills.text =  DataPass.GetSavedData().recordMonstersKilled.ToString();
+            text_ActualMoney.text =  DataPass.GetSavedData().actualmoney.ToString();
         }
     }
 
@@ -45,14 +58,34 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void OnOffMusic()
     {
-
+        ButtonPressed();
+        bool condition = MusicSystem.CanSound();
+        MusicSystem.IsSound( !condition );
+        img_music.color = DataFunc.SetColorParam(img_music.color,(int)ColorType.a, !condition ? 1: 0.5f);
     }
+
+
+    /// <summary>
+    /// Hace el sonido de un boton
+    /// </summary>
+    public void ButtonPressed() => MusicSystem.ButtonSound();
+
+
 
     /// <summary>
     ///  Cambiamos de escena
     /// </summary>
     /// <param name="i"></param>
     public void ChangeSceneTo(int i) => DataFunc.ChangeSceneTo(i);
+
+
+    /// <summary>
+    /// Te saca del juego
+    /// </summary>
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     #endregion
 }
 #endregion

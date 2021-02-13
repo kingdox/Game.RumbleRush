@@ -18,7 +18,7 @@ public class InstructionManager : MonoBehaviour
     {
         GetPages();
         RefreshPage();
-
+        MusicSystem.SetVolume(0.75f);
     }
     #endregion
     #region Methods
@@ -58,6 +58,12 @@ public class InstructionManager : MonoBehaviour
         actualPage = DataFunc.TravelArr(goForward, pages.Length, actualPage);
         RefreshPage();
     }
+
+
+    /// <summary>
+    /// Hace el sonido de un boton
+    /// </summary>
+    public void ButtonPressed() => MusicSystem.ButtonSound();
 
     /// <summary>
     ///  Cambiamos de escena

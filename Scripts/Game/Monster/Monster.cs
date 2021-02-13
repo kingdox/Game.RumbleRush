@@ -6,19 +6,28 @@ public class Monster : MonoBehaviour
 {
     #region VARIABLES
     private bool isDead = false;
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigid;
+    private Animator animator;
     public BoxCollider2D boxCollider2D;
-
+ 
     public MonsterType type;
 
     private float cooldownMovement_Y;
+    public ParticleSystem particle;
+
+
+    [Header("Extra")]
+    public TrailRenderer trail_dead;
 
     #endregion
     #region Events
     private void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         //boxCollider2D = GetComponent<BoxCollider2D>();
+        trail_dead.emitting = false;
+
     }
     private void Update()
     {
@@ -26,6 +35,7 @@ public class Monster : MonoBehaviour
         {
             Movement();
             DestroyChecker();
+
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,19 +56,58 @@ public class Monster : MonoBehaviour
     /// <param name="tr"></param>
     private void CheckCollisions(Transform tr)
     {
-        if (tr.CompareTag("Player") && !isDead && GameManager.status == GameStatus.InGame)
+        if ((tr.CompareTag("Player")  || tr.CompareTag("Weapon")) && !isDead && GameManager.status == GameStatus.InGame)
         {   
             isDead = true;
-            PlayerManager.player.playerController.higherVelocity_X /= 2;
 
-            PlayerManager.player.RemoveLife(type);
-            PlayerManager.player.ResetPowerBar();
-            PlayerManager.player.rigi2D_player.velocity = new Vector2(
-                PlayerManager.player.playerController.higherVelocity_X,
-                PlayerManager.player.rigi2D_player.velocity.y
-            );
+            //animator.SetTrigger("DeadTrigger");
+
+           
+
+            //Si no fue el arma el contacto...
+            if (!tr.CompareTag("Weapon"))
+            {
+
+                rigid.velocity = new Vector2(-5, rigid.velocity.y);
+
+                PlayerManager.player.playerController.higherVelocity_X /= 2;
+                PlayerManager.player.RemoveLife(type);
+                PlayerManager.player.ResetPowerBar();
+                PlayerManager.player.rigi2D_player.velocity = new Vector2( PlayerManager.player.playerController.higherVelocity_X, PlayerManager.player.rigi2D_player.velocity.y);
+                //GameManager.ScreenShake();
+
+            }
+            else
+            {
+                trail_dead.emitting = true;
+
+                //Añades una kill
+                PlayerManager.player.killsActual++;
+
+                rigid.velocity = new Vector2(90, Random.Range(-30,30));
+
+                //Animación de destrucción del monstruo
+                if (type == MonsterType.Monster_Floor)
+                {
+                    animator.Play("Monster_Floor_Dead");
+                }
+                else
+                {
+                    animator.Play("Monster_Aero_Dead");
+                }
+
+                particle.Play();
+            }
+
+            MusicSystem.ReproduceSound(MusicSystem.SfxType.Damage);
             boxCollider2D.enabled = false;
-            rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+
+        } else if(!isDead && GameManager.status == GameStatus.GameOver)
+        {
+            isDead = true;
+            boxCollider2D.enabled = false;
+            rigid.bodyType = RigidbodyType2D.Kinematic;
         }
 
     }
@@ -70,7 +119,7 @@ public class Monster : MonoBehaviour
     /// </summary>
     public void Movement()
     {
-        Vector2 _tempVelocity = rigidbody2D.velocity;
+        Vector2 _tempVelocity = rigid.velocity;
         _tempVelocity.x -= (Time.deltaTime * Data.data.monsterSpeed) ;
 
 
@@ -106,7 +155,7 @@ public class Monster : MonoBehaviour
         }
 
 
-        rigidbody2D.velocity = _tempVelocity;
+        rigid.velocity = _tempVelocity;
     }
 
 

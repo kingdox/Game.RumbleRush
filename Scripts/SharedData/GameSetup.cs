@@ -31,12 +31,6 @@ public class GameSetup: MonoBehaviour
     public static bool hardMode = false;
     
     #endregion
-    #region EVENT
-    private void Update()
-    {
-        
-    }
-    #endregion
     #region Methods
     /// <summary>
     /// Esto permite actualizar los datos reales que
@@ -74,6 +68,15 @@ public class GameSetup: MonoBehaviour
 
         Debug.Log($"Poseerás {easyMetters} Metros faciles :)");
     }
+
+
+    /// <summary>
+    /// Preguntamos si  el character es igual a el tipo preguntado
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static bool IsChar(CharacterType type) => character.type.Equals(type);
+
     #endregion
 
 }

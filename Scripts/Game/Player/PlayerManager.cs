@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
      * - El manejo y contacto con power en caso de su activaciónd esactivación
      * - El checkeo de si sigue jugando
      * 
+     * - manejo de animación del player
      */
 
     #region VAR
@@ -38,10 +39,8 @@ public class PlayerManager : MonoBehaviour
     public float cooldownMax;
     public float cooldownActual;
 
-    //private Character player;
-
     //Escudos que le permiten evitar golpes de monstruos por cierto tiempo
-    public int shields = 0;
+    public int shieldsActual = 0;
 
     [Header("Info")]
     public float mettersActual;
@@ -53,8 +52,11 @@ public class PlayerManager : MonoBehaviour
     public GameObject obj_player;
     public Rigidbody2D rigi2D_player;
     public PlayerController playerController;
-
+    public Animator anim_player;
     public float inmuneTimeCount ;
+
+
+
 
     #endregion
     #region EVENT
@@ -66,15 +68,19 @@ public class PlayerManager : MonoBehaviour
         //GameSetup ya posee datos antes de que PlayerManager exista
         LoadPlayer();
     }
-   
+
+    private void Start()
+    {
+        anim_player.SetInteger("indexCharacter", (int)GameSetup.character.type);
+
+    }
+
     private void Update()
     {
         if (GameManager.status == GameStatus.InGame )
         {
             UpdateRun();
             CheckPlayerStatus();
-
-            
         }
 
     }
@@ -92,7 +98,7 @@ public class PlayerManager : MonoBehaviour
         player.energyMax= GameSetup.character.energy;
         player.energyActual = player.energyMax;
         player.cooldownMax = GameSetup.character.cooldown;
-
+        //player.cooldownActual = player.cooldownMax;
 
         //Aprovechamos de colocar las adiciones con los buff...
         for (int x = 0; x < GameSetup.buffs.Length; x++)
@@ -106,9 +112,7 @@ public class PlayerManager : MonoBehaviour
                     player.speedActual += GameSetup.buffs[x].counts;
                     break;
                 case BuffType.Shield:
-                    player.shields += GameSetup.buffs[x].counts;
-                    break;
-                default:
+                    player.shieldsActual += GameSetup.buffs[x].counts;
                     break;
             }
             
@@ -116,7 +120,6 @@ public class PlayerManager : MonoBehaviour
 
         //Establecemos la base de velocidad
         player.speedBase = player.speedActual;
-
 
     }
 
@@ -130,6 +133,12 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     private void UpdateRun()
     {
+
+        anim_player.SetFloat("velocityX", player.rigi2D_player.velocity.x);
+        anim_player.SetFloat("velocityY", player.rigi2D_player.velocity.y);
+
+
+
         inmuneTimeCount += Time.deltaTime;
         energyActual = Mathf.Clamp(PowerManager.PlayerEnergyUpdate(),-1,energyMax);
         //energyActual -= Time.deltaTime / Data.data.lifeReductor;
@@ -149,7 +158,10 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void ResetPowerBar()
     {
-        cooldownActual = 0;
+        //if (shieldsActual <= 0)
+        //{
+            cooldownActual = 0;
+        //}
     }
 
     /// <summary>
@@ -160,7 +172,13 @@ public class PlayerManager : MonoBehaviour
         if (inmuneTimeCount < Data.data.playerInmuneTimeCountLimit) return;
         inmuneTimeCount = 0;
 
-        if (shields-- > 0) return;
+        if (shieldsActual > 0) {
+
+            shieldsActual -= 1;
+            UIManager.SetVisualStat((int)BuffType.Shield, shieldsActual);
+            UIManager.VisualEff(VisualEffType.Special);
+            return;
+        };
 
 
         int[] range = {};
@@ -176,6 +194,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         player.energyActual -= DataFunc.Range(range);
+
+        //Animamos la pantalla para dar el efecto de atacados
+        UIManager.VisualEff(VisualEffType.Damaged);
     }
 
 
@@ -185,7 +206,10 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void HealLife(){
         float heal = DataFunc.Range(Data.data.healRangeValue);
-        energyActual = Mathf.Clamp(energyActual + heal, 0, energyMax);
+        //obtienes el porcentaje de curacion basado en tu max
+        float healPercent = DataFunc.KnowQtyOfPercent(heal, energyMax);
+
+        energyActual = Mathf.Clamp(energyActual + healPercent, 0, energyMax);
     }
     /// <summary>
     /// Si coges una moneda en mapa, aleatoriamente generará
@@ -224,10 +248,39 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     private void CheckPlayerStatus()
     {
-        if (energyActual < 0 || obj_player.transform.position.y < -2)
-        {
+        if (energyActual <= 0 || obj_player.transform.position.y < -2 && GameManager.status == GameStatus.InGame){
+
+            //playerController.DisablePhysics();
+            //Mostramos la animación de muerte del jugador
+            player.anim_player.SetBool("IsDead", true);
+            MusicSystem.ReproduceSound(MusicSystem.SfxType.Dead);
             GameManager.GameOver();
         }
+    }
+
+
+    /// <summary>
+    /// Obtenemos el estado actual de la stat correspondiente al indice especificado
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public static float GetActualStat(int index)
+    {
+        float stat = 0;
+        switch (index)
+        {
+            case (int)BuffType.Energy:
+                stat = player.energyMax;
+                break;
+            case (int)BuffType.Speed:
+                stat = player.speedActual;
+                break;
+            case (int)BuffType.Shield:
+                stat = player.shieldsActual;
+                break;
+        }
+
+        return stat;
     }
     #endregion
 }

@@ -1,0 +1,1126 @@
+fileFormatVersion: 2
+guid: 9137f753df89f4c948a6d0d99c045de0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8197579830679270426
+    second: atlas iconos y props_0
+  - first:
+      213: -5315671968149979032
+    second: atlas iconos y props_1
+  - first:
+      213: -5308577543968613913
+    second: atlas iconos y props_2
+  - first:
+      213: -4168889720053905167
+    second: atlas iconos y props_3
+  - first:
+      213: -4172843712653101517
+    second: atlas iconos y props_4
+  - first:
+      213: -1355589947514737921
+    second: atlas iconos y props_5
+  - first:
+      213: 6757956568554717873
+    second: atlas iconos y props_6
+  - first:
+      213: 6810513323667647379
+    second: atlas iconos y props_7
+  - first:
+      213: 3464401403953875719
+    second: atlas iconos y props_8
+  - first:
+      213: -347932236186405368
+    second: atlas iconos y props_9
+  - first:
+      213: 2832065234520795839
+    second: atlas iconos y props_10
+  - first:
+      213: -5507450151038001811
+    second: atlas iconos y props_11
+  - first:
+      213: 2101707237704833074
+    second: atlas iconos y props_12
+  - first:
+      213: 8339233296778867402
+    second: atlas iconos y props_13
+  - first:
+      213: -3809215266228839098
+    second: atlas iconos y props_14
+  - first:
+      213: 3179875831243419839
+    second: atlas iconos y props_15
+  - first:
+      213: -4440059447001014761
+    second: atlas iconos y props_16
+  - first:
+      213: 5182966454907518420
+    second: atlas iconos y props_17
+  - first:
+      213: -5252976801461535546
+    second: atlas iconos y props_18
+  - first:
+      213: -2794850500389914205
+    second: atlas iconos y props_19
+  - first:
+      213: 5435344855250665657
+    second: atlas iconos y props_20
+  - first:
+      213: -2200580764337939533
+    second: atlas iconos y props_21
+  - first:
+      213: 3385090989792763695
+    second: atlas iconos y props_22
+  - first:
+      213: 8532331042389033103
+    second: atlas iconos y props_23
+  - first:
+      213: 5078937205906711097
+    second: atlas iconos y props_24
+  - first:
+      213: -44276109039059556
+    second: atlas iconos y props_25
+  - first:
+      213: -6490679962519523720
+    second: atlas iconos y props_26
+  - first:
+      213: -4010654170637416819
+    second: atlas iconos y props_27
+  - first:
+      213: -3078408136993435306
+    second: atlas iconos y props_28
+  - first:
+      213: 3242808938070325922
+    second: atlas iconos y props_29
+  - first:
+      213: 3863116287464039073
+    second: atlas iconos y props_30
+  - first:
+      213: -8579782491053027358
+    second: atlas iconos y props_31
+  - first:
+      213: 8710445805474311689
+    second: atlas iconos y props_32
+  - first:
+      213: -1124706286035382029
+    second: atlas iconos y props_33
+  - first:
+      213: 4406662589091102192
+    second: atlas iconos y props_34
+  - first:
+      213: 892497313788748137
+    second: atlas iconos y props_35
+  - first:
+      213: 8348778640040175921
+    second: atlas iconos y props_36
+  - first:
+      213: -1355634397281024921
+    second: atlas iconos y props_37
+  - first:
+      213: -3455207453320881129
+    second: atlas iconos y props_38
+  - first:
+      213: -2970157746213083152
+    second: atlas iconos y props_39
+  - first:
+      213: -4341345453349486385
+    second: atlas iconos y props_40
+  - first:
+      213: -6189472101650439279
+    second: atlas iconos y props_41
+  - first:
+      213: -4202829801333955554
+    second: atlas iconos y props_42
+  - first:
+      213: 6124736105589528519
+    second: atlas iconos y props_43
+  - first:
+      213: 8751322010287244777
+    second: atlas iconos y props_44
+  - first:
+      213: 1922930267422539804
+    second: atlas iconos y props_45
+  - first:
+      213: 9205126188885415133
+    second: atlas iconos y props_46
+  - first:
+      213: 7028930832621160493
+    second: atlas iconos y props_47
+  - first:
+      213: -3868290453171445730
+    second: atlas iconos y props_48
+  - first:
+      213: -764485106993335737
+    second: atlas iconos y props_49
+  - first:
+      213: -5106109500316062610
+    second: atlas iconos y props_50
+  - first:
+      213: 7136591475619157453
+    second: atlas iconos y props_51
+  - first:
+      213: 3284405596774204528
+    second: atlas iconos y props_52
+  - first:
+      213: 2643772584756417889
+    second: atlas iconos y props_53
+  - first:
+      213: -5949990527604405357
+    second: atlas iconos y props_54
+  - first:
+      213: -3656167993671180811
+    second: atlas iconos y props_55
+  - first:
+      213: -2921601545657815686
+    second: atlas iconos y props_56
+  - first:
+      213: -932227459260969252
+    second: atlas iconos y props_57
+  - first:
+      213: 7866535391865075821
+    second: atlas iconos y props_58
+  - first:
+      213: 6902082913126306562
+    second: atlas iconos y props_59
+  - first:
+      213: -336609038797335937
+    second: atlas iconos y props_60
+  - first:
+      213: 4612963516515588681
+    second: atlas iconos y props_61
+  - first:
+      213: 6017113873657945091
+    second: atlas iconos y props_62
+  - first:
+      213: -4008424984394757034
+    second: atlas iconos y props_63
+  - first:
+      213: -79584707366291273
+    second: atlas iconos y props_64
+  - first:
+      213: -5909879991726256417
+    second: atlas iconos y props_65
+  - first:
+      213: -2031275860703504364
+    second: atlas iconos y props_66
+  - first:
+      213: 5725607798185275075
+    second: atlas iconos y props_67
+  - first:
+      213: -330780805724232695
+    second: atlas iconos y props_68
+  - first:
+      213: 9027257338731488949
+    second: atlas iconos y props_69
+  - first:
+      213: -73900104818918734
+    second: atlas iconos y props_70
+  - first:
+      213: -4554935809560487640
+    second: atlas iconos y props_71
+  - first:
+      213: 9172849163476115501
+    second: atlas iconos y props_72
+  - first:
+      213: -1408827551187243994
+    second: atlas iconos y props_73
+  - first:
+      213: -2069180490280473004
+    second: atlas iconos y props_74
+  - first:
+      213: -7062263482141467175
+    second: atlas iconos y props_75
+  - first:
+      213: -9179404024430434583
+    second: atlas iconos y props_76
+  - first:
+      213: 4911403400296214605
+    second: atlas iconos y props_77
+  - first:
+      213: -6365975805713512596
+    second: atlas iconos y props_78
+  - first:
+      213: -6529152703083082008
+    second: atlas iconos y props_79
+  - first:
+      213: 2024452939341481339
+    second: atlas iconos y props_80
+  - first:
+      213: -5134272371727103848
+    second: atlas iconos y props_81
+  - first:
+      213: 4210668686756392099
+    second: atlas iconos y props_82
+  - first:
+      213: 7869870891835854497
+    second: atlas iconos y props_83
+  - first:
+      213: -5745843434769732193
+    second: atlas iconos y props_84
+  - first:
+      213: -117469235933260944
+    second: atlas iconos y props_85
+  - first:
+      213: -8080635002861919453
+    second: atlas iconos y props_86
+  - first:
+      213: -4520340181509874617
+    second: atlas iconos y props_87
+  - first:
+      213: -2194777954939644391
+    second: atlas iconos y props_88
+  - first:
+      213: 3747621353654837500
+    second: atlas iconos y props_89
+  - first:
+      213: -7908547084693030611
+    second: atlas iconos y props_90
+  - first:
+      213: -8331006657385342137
+    second: atlas iconos y props_91
+  - first:
+      213: 5025666871679856292
+    second: atlas iconos y props_92
+  - first:
+      213: -1973348076444433599
+    second: atlas iconos y props_93
+  - first:
+      213: 7650238594728316787
+    second: atlas iconos y props_94
+  - first:
+      213: -6640962354831884191
+    second: atlas iconos y props_95
+  - first:
+      213: -9207580832727056003
+    second: atlas iconos y props_96
+  - first:
+      213: -6543748426704029246
+    second: atlas iconos y props_97
+  - first:
+      213: -9090148665396264868
+    second: atlas iconos y props_98
+  - first:
+      213: 4064862459334798027
+    second: atlas iconos y props_99
+  - first:
+      213: -6681154353239264167
+    second: atlas iconos y props_100
+  - first:
+      213: 988437763452798859
+    second: atlas iconos y props_101
+  - first:
+      213: -4522903823024461814
+    second: atlas iconos y props_102
+  - first:
+      213: 8201176318471410113
+    second: atlas iconos y props_103
+  - first:
+      213: -6897129289997732719
+    second: atlas iconos y props_104
+  - first:
+      213: -7641965847683315867
+    second: atlas iconos y props_105
+  - first:
+      213: 7328824180020918559
+    second: atlas iconos y props_106
+  - first:
+      213: 7233786033751667028
+    second: atlas iconos y props_107
+  - first:
+      213: 7632534347466125817
+    second: atlas iconos y props_108
+  - first:
+      213: 7298411227095705125
+    second: atlas iconos y props_109
+  - first:
+      213: -875075118812379605
+    second: atlas iconos y props_110
+  - first:
+      213: 3777971851291375286
+    second: atlas iconos y props_111
+  - first:
+      213: -2145535405934593785
+    second: atlas iconos y props_112
+  - first:
+      213: -6637860432909420185
+    second: atlas iconos y props_113
+  - first:
+      213: 7472097341314937202
+    second: atlas iconos y props_114
+  - first:
+      213: 553900845835871253
+    second: atlas iconos y props_115
+  - first:
+      213: 638550470167401464
+    second: atlas iconos y props_116
+  - first:
+      213: 1253931743686490062
+    second: atlas iconos y props_117
+  - first:
+      213: 3229320856006996953
+    second: atlas iconos y props_118
+  - first:
+      213: 1491108207456386404
+    second: atlas iconos y props_119
+  - first:
+      213: -692150462883016306
+    second: atlas iconos y props_120
+  - first:
+      213: -3845552401748750639
+    second: atlas iconos y props_121
+  - first:
+      213: -4778304724641840184
+    second: atlas iconos y props_122
+  - first:
+      213: 1034823149087593929
+    second: atlas iconos y props_123
+  - first:
+      213: 3080768050188253446
+    second: atlas iconos y props_124
+  - first:
+      213: 1927142454308900154
+    second: atlas iconos y props_125
+  - first:
+      213: 6943287231231383627
+    second: atlas iconos y props_126
+  - first:
+      213: 4084502425030281979
+    second: atlas iconos y props_127
+  - first:
+      213: -5737344829609385477
+    second: atlas iconos y props_128
+  - first:
+      213: 3860505368705709551
+    second: atlas iconos y props_129
+  - first:
+      213: 7981814149483062995
+    second: atlas iconos y props_130
+  - first:
+      213: -274334035236816470
+    second: atlas iconos y props_131
+  - first:
+      213: -2619297851627609500
+    second: atlas iconos y props_132
+  - first:
+      213: -8162265761203845896
+    second: atlas iconos y props_133
+  - first:
+      213: -5572390269542602038
+    second: atlas iconos y props_134
+  - first:
+      213: -2365601325145785097
+    second: atlas iconos y props_135
+  - first:
+      213: 4732070233662102586
+    second: atlas iconos y props_136
+  - first:
+      213: -3861279422455730563
+    second: atlas iconos y props_137
+  - first:
+      213: 2465280153561700318
+    second: atlas iconos y props_138
+  - first:
+      213: -4149025515973069870
+    second: atlas iconos y props_139
+  - first:
+      213: -2100709047240525703
+    second: atlas iconos y props_140
+  - first:
+      213: 7304980455887694071
+    second: atlas iconos y props_141
+  - first:
+      213: 2260004133346303324
+    second: atlas iconos y props_142
+  - first:
+      213: 1085133117286405522
+    second: atlas iconos y props_143
+  - first:
+      213: -6176085162767660249
+    second: atlas iconos y props_144
+  - first:
+      213: -5516517719133004035
+    second: atlas iconos y props_145
+  - first:
+      213: -3108892587706250241
+    second: atlas iconos y props_146
+  - first:
+      213: -8114580529770081397
+    second: atlas iconos y props_147
+  - first:
+      213: -888877962342938113
+    second: atlas iconos y props_148
+  - first:
+      213: -6297895655905846393
+    second: atlas iconos y props_149
+  - first:
+      213: -5192782495230010514
+    second: atlas iconos y props_150
+  - first:
+      213: -3526645858891858665
+    second: atlas iconos y props_151
+  - first:
+      213: -2651519993630907075
+    second: atlas iconos y props_152
+  - first:
+      213: 6466117555115601526
+    second: atlas iconos y props_153
+  - first:
+      213: -5694194143238114176
+    second: atlas iconos y props_154
+  - first:
+      213: -1019404644737389788
+    second: atlas iconos y props_155
+  - first:
+      213: 5516031161170489750
+    second: atlas iconos y props_156
+  - first:
+      213: -239425060639517079
+    second: atlas iconos y props_157
+  - first:
+      213: 571333567636869620
+    second: atlas iconos y props_158
+  - first:
+      213: 3061146019863433447
+    second: atlas iconos y props_159
+  - first:
+      213: -7126996282221639982
+    second: atlas iconos y props_160
+  - first:
+      213: -2791028637836654267
+    second: atlas iconos y props_161
+  - first:
+      213: 2922707529879958938
+    second: atlas iconos y props_162
+  - first:
+      213: 9128941652079924299
+    second: atlas iconos y props_163
+  - first:
+      213: -8259632650351501441
+    second: atlas iconos y props_164
+  - first:
+      213: 7312210943225361783
+    second: atlas iconos y props_165
+  - first:
+      213: -4402313757180125286
+    second: atlas iconos y props_166
+  - first:
+      213: -8009703058784492813
+    second: atlas iconos y props_167
+  - first:
+      213: 954601707980127237
+    second: atlas iconos y props_168
+  - first:
+      213: 4747956678281218390
+    second: atlas iconos y props_169
+  - first:
+      213: 5381328664128132928
+    second: atlas iconos y props_170
+  - first:
+      213: -7336058372816594643
+    second: atlas iconos y props_171
+  - first:
+      213: 5033883100951595848
+    second: atlas iconos y props_172
+  - first:
+      213: 3834122993813229028
+    second: atlas iconos y props_173
+  - first:
+      213: -5202669037014900333
+    second: atlas iconos y props_174
+  - first:
+      213: 955419979435836294
+    second: atlas iconos y props_175
+  - first:
+      213: -6750507059850743550
+    second: atlas iconos y props_176
+  - first:
+      213: 6671605717837030726
+    second: atlas iconos y props_177
+  - first:
+      213: 2869647240533138559
+    second: atlas iconos y props_178
+  - first:
+      213: 370016432935419757
+    second: atlas iconos y props_179
+  - first:
+      213: -5388860253832400656
+    second: atlas iconos y props_180
+  - first:
+      213: -6859137720657237686
+    second: atlas iconos y props_181
+  - first:
+      213: 6150333056139405769
+    second: atlas iconos y props_182
+  - first:
+      213: 3822775630416156668
+    second: atlas iconos y props_183
+  - first:
+      213: -7975267057043732100
+    second: atlas iconos y props_184
+  - first:
+      213: -4425077712564490763
+    second: atlas iconos y props_185
+  - first:
+      213: 8112816433771132615
+    second: atlas iconos y props_186
+  - first:
+      213: -5957717978735221900
+    second: atlas iconos y props_187
+  - first:
+      213: 294800492342527807
+    second: atlas iconos y props_188
+  - first:
+      213: -4461008685239958452
+    second: atlas iconos y props_189
+  - first:
+      213: -8119706948734422364
+    second: atlas iconos y props_190
+  - first:
+      213: 2038930053869509224
+    second: atlas iconos y props_191
+  - first:
+      213: 4937958037914443980
+    second: atlas iconos y props_192
+  - first:
+      213: 241634516756731088
+    second: atlas iconos y props_193
+  - first:
+      213: 6084765959457377508
+    second: atlas iconos y props_194
+  - first:
+      213: 7220880351730656963
+    second: atlas iconos y props_195
+  - first:
+      213: 4042432544721964652
+    second: atlas iconos y props_196
+  - first:
+      213: -4419881830579762530
+    second: atlas iconos y props_197
+  - first:
+      213: 1315946143799010820
+    second: atlas iconos y props_198
+  - first:
+      213: 8170743498178479447
+    second: atlas iconos y props_199
+  - first:
+      213: 599182020783057323
+    second: atlas iconos y props_200
+  - first:
+      213: -1593243192410455140
+    second: atlas iconos y props_201
+  - first:
+      213: 2916320057863893647
+    second: atlas iconos y props_202
+  - first:
+      213: 4060554044326898769
+    second: atlas iconos y props_203
+  - first:
+      213: -957118790076982317
+    second: atlas iconos y props_204
+  - first:
+      213: -3150580782897397329
+    second: atlas iconos y props_205
+  - first:
+      213: -8593833570741229292
+    second: atlas iconos y props_206
+  - first:
+      213: 2803879149038474029
+    second: atlas iconos y props_207
+  - first:
+      213: 4596812210520554244
+    second: atlas iconos y props_208
+  - first:
+      213: -6291604846778318611
+    second: atlas iconos y props_209
+  - first:
+      213: -7415803264919709857
+    second: atlas iconos y props_210
+  - first:
+      213: 155855098119449703
+    second: atlas iconos y props_211
+  - first:
+      213: -5667679578382849391
+    second: atlas iconos y props_212
+  - first:
+      213: 5112809232935534758
+    second: atlas iconos y props_213
+  - first:
+      213: -2425815173193287447
+    second: atlas iconos y props_214
+  - first:
+      213: 6987979637067301028
+    second: atlas iconos y props_215
+  - first:
+      213: 4216011130503022357
+    second: Icons_1_0
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: atlas iconos y props_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a147b816c67a3c170800000000000000
+      internalID: 8197579830679270426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3072
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8604be33280fa36b0800000000000000
+      internalID: -5315671968149979032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3072
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9922d89d42456b0800000000000000
+      internalID: -5308577543968613913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_3
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3072
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8c86823e02526c0800000000000000
+      internalID: -4168889720053905167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336f61480c41716c0800000000000000
+      internalID: -4172843712653101517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffa2b4dff1aff2de0800000000000000
+      internalID: -1355589947514737921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_6
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2c834a1b519cd50800000000000000
+      internalID: 6757956568554717873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_7
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2048
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b6643c8cdc38e50800000000000000
+      internalID: 6810513323667647379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b0902c8b6041030800000000000000
+      internalID: 3464401403953875719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 806b3308975eb2bf0800000000000000
+      internalID: -347932236186405368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_10
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba685c63548d4720800000000000000
+      internalID: 2832065234520795839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_11
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d5531744b9193b0800000000000000
+      internalID: -5507450151038001811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 238934de893ca2d10800000000000000
+      internalID: 2101707237704833074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_13
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac23d911088eab370800000000000000
+      internalID: 8339233296778867402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_14
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d5f6fb5e2f22bc0800000000000000
+      internalID: -3809215266228839098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas iconos y props_15
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb03d178830312c20800000000000000
+      internalID: 3179875831243419839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_1_0
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 512
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517c9ba29c7428a30800000000000000
+      internalID: 4216011130503022357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

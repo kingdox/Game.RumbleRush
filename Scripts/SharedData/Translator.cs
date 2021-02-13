@@ -64,8 +64,6 @@ public class Translator
     /// <returns>La traducción de un valor</returns>
     public static string Trns(TKey enumKey) => _.value[(int)enumKey];
 
-    /// <returns>Devuelve la moneda</returns>
-    public static string GetCurrency() => Trns(TKey.SIGN_Money);
 
 }
 
