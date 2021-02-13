@@ -114,10 +114,13 @@ public class PlayerManager : MonoBehaviour
             
         }
 
+<<<<<<< HEAD
         //Establecemos la base de velocidad
         player.speedBase = player.speedActual;
 
 
+=======
+>>>>>>> e378e5dc7511b7457d0797ca2c5c30dcef3e0622
     }
 
 

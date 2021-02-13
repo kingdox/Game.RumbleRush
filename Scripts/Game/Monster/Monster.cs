@@ -82,6 +82,7 @@ public class Monster : MonoBehaviour
             if (cooldownMovement_Y > 0.25f){
                 //tenemos el player fisico
                 Vector2 _playerPos = PlayerManager.player.obj_player.transform.position;
+<<<<<<< HEAD
 
                 if (transform.position.x > _playerPos.x){
 
@@ -92,6 +93,18 @@ public class Monster : MonoBehaviour
                     float direction = isUpper ? -1 : 0;
                     _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed / 2) * direction;
 
+=======
+
+                if (transform.position.x > _playerPos.x){
+
+                    bool isUpper = transform.position.y > _playerPos.y;
+                    // acerca su eje Y a el player
+                    // si el jugador está encima entonces será negativa, sino positiva,
+                    //esta luego impulsará un poco pero no al completo...
+                    float direction = isUpper ? -1 : 0;
+                    _tempVelocity.y += (Time.deltaTime * Data.data.monsterSpeed / 2) * direction;
+
+>>>>>>> e378e5dc7511b7457d0797ca2c5c30dcef3e0622
                 }
                 else
                 {
